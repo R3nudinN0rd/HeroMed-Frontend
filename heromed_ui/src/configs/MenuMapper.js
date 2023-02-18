@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CalendarSVG from '../shared/IconComponents/calendarSVG'
+import OrganisationSVG from '../shared/IconComponents/organisationSVG'
 import MyEventsSVG from '../shared/IconComponents/myEventsSVG'
 import HistoryEventSVG from '../shared/IconComponents/pastEventsSVG'
 import CreateEventSVG from '../shared/IconComponents/createEventSVG'
@@ -13,7 +13,7 @@ function MenuMapper() {
     {
       'name': 'Sections',
       'url': '/sections',
-      'icon': <CalendarSVG />,
+      'icon': <OrganisationSVG />,
       'element': <SectionPage />,
     }
   ]

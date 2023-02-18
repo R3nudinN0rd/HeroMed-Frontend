@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ErrorHandler from '../../common/ErrorHandler'
 import LoadingHandler from '../../common/LoadingHandler'
 import SectionCardComponent from '../../Components/Cards/SectionCardComponent'
@@ -6,22 +6,22 @@ import add from '../../assets/IconsSvg/vect-icons/add.png'
 import useAxios from '../../hooks/useAxios'
 import Button from '@mui/material/Button'
 import ModalContainer from '../../Components/Modals/ModalContainer'
-import SectionBody from '../../Components/Modals/SectionModalBody'
+import SectionBody from '../../Components/Modals/SectionModalBodyAdd'
 
-function SectionsPage() {
-  const { data, res, loading, error } = useAxios({
+
+
+function SectionsPage() { 
+  const { data, loading, error } = useAxios({
     method: 'get',
     url: '/api/sections',
   })
 
-
 const [isModalOpen, setIsModalOpen] = useState(false);
 const [modalBody, setModalBody] = useState();
 
-
 const showModal =()=>{
   setIsModalOpen(!isModalOpen);
-  setModalBody(<SectionBody></SectionBody>);
+  setModalBody(<SectionBody setIsModalOpen= {setIsModalOpen} ></SectionBody>);
 }
 
   return (
