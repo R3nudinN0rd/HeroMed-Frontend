@@ -24,7 +24,7 @@ function SalonsPage(){
     }
 
 return (
-    <div className='linear-bg-content h-[750px] w-full relative'>
+    <div className='linear-bg-content h-[750px] w-full relative overflow-hidden'>
       <div className={isModalOpen?'flex flex-row justify-center hidden':'flex flex-row justify-center'}  >
         <Button size="small" onClick={() => showModal()}>
           <span>
