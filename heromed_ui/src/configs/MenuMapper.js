@@ -7,6 +7,7 @@ import CreateEventSVG from '../shared/IconComponents/createEventSVG'
 import ListOfEventsSVG from '../shared/IconComponents/listOfEventsSVG'
 import AdminSVG from '../shared/IconComponents/adminSVG'
 import SectionPage from '../pages/SectionsPage/SectionPage'
+import SalonsPage from '../pages/SalonsPage/SalonPage'
 
 function MenuMapper() {
   return [
@@ -15,6 +16,12 @@ function MenuMapper() {
       'url': '/sections',
       'icon': <OrganisationSVG />,
       'element': <SectionPage />,
+    },
+    {
+      'name':'Salons',
+      'url':'/salon',
+      'icon':<OrganisationSVG/>,
+      'element':<SalonsPage/>
     }
   ]
 }
