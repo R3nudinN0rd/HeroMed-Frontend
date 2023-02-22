@@ -15,13 +15,13 @@ function SalonCardComponent({ cardData }) {
     method: 'get',
     url: `/api/sections/section/${cardData.sectionId}`,
   });
-  var salonAvailable = "";
+
+  var salonAvailable;
   if (cardData.available) salonAvailable = "Available";
   else salonAvailable = "Busy";
-
   return (
     <>
-      {loading ? (
+      {loading? (
         <LoadingHandler />
       ) : (
         <>
@@ -48,6 +48,7 @@ function SalonCardComponent({ cardData }) {
               <div className='flex flex-col justify-start w-4/12 h-full mt-1 ml-3 mr-2 gap-10'>
                 <div className='flex flex-col pt-1'>
                   <span className='mt-1 text-sm font-bold text-center leading-none'>{salonAvailable}</span>
+                  <span>Capacity: <PatientsCount id = {cardData.id}></PatientsCount>/{cardData.beds}</span>
                 </div>
                 <div className='flex flex-col pt-1'>
                   <Button size="small">Show related data</Button>
@@ -71,3 +72,26 @@ function SalonCardComponent({ cardData }) {
 }
 
 export default SalonCardComponent
+
+function PatientsCount(props){
+  const {data, response, error, loading} = useAxios({
+    method: 'get',
+    url: `/api/patient/patientSalon/${props.id}`
+  });
+  var numberOfCurrentPatients = 0;
+  if(data){
+    numberOfCurrentPatients = data.length;
+  }
+  return ( 
+    <>
+      {loading? (
+        <LoadingHandler />
+        ) : (
+        <>
+           <span> {numberOfCurrentPatients}</span>
+        </>
+    )}
+    </>
+  )
+
+}
