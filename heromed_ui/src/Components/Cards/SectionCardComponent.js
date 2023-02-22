@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import HeromedSectionImagePlaceholder from '../../assets/Images/HeromedSectionImagePlaceholder.jpg'
 import Button from '@mui/material/Button';
+import add from '../../assets/IconsSvg/vect-icons/add.png'
 
 function SectionCardComponent({ cardData}) {
   // var options = { day: '2-digit', month: 'short' }
@@ -19,9 +20,23 @@ function SectionCardComponent({ cardData}) {
   //   setIsUserJoined(true)
   // }
   // const declineEventPost = () => alert('not implemented')
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal =()=>{
+    setIsModalOpen(!isModalOpen);
+  }
+
+
   return (
     <>
       <div className='event-card-container min-w-[430px] min-h-[350px] max-w-[430px] max-h-[350px] rounded-[10px]'>
+        <div className='flex z-20 h-[40px] w-[40px]'>
+        <Button className='w-full h-full' size="medium" onClick={() => showModal()}>
+          <span>
+          <img src={add} className='flex w-6 h-6 px-1 py-1'></img>
+          </span>
+          </Button>
+        </div>
         <div className='relative h-[150px] w-full'>
           <img src={HeromedSectionImagePlaceholder} className='absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px]' />
           <div className='z-10 flex flex-col justify-between h-full'>
