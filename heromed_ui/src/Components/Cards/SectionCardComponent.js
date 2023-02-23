@@ -64,7 +64,7 @@ function SectionCardComponent({ cardData}) {
               <span className='text-sm text-center my-2 font-bold leading-none'>{cardData.maximumEmployeesNo}</span>
             </div>
             <div className='flex flex-col pt-1'>
-              <Button size="small" onClick="">Show related data</Button>
+              <Button size="small">Show related data</Button>
             </div>
           </div>
           <span className='border-r-[1px] my-2 border-gray-border'></span>
