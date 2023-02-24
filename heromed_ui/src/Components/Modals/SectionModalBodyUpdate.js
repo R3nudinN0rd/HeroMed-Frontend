@@ -4,7 +4,6 @@ import axios from 'axios';
 
 
 const SectionBody = ({cardData, setIsModalOpen})  => {
-  console.log(cardData);
   const { id, title, description, maximumEmployeesNo} = cardData;  
   const [titleValue, setTitleValue] = useState(title);
   const [descriptionValue, setDescriptionValue] = useState(description);
@@ -51,7 +50,7 @@ const SectionBody = ({cardData, setIsModalOpen})  => {
                         <input className="border rounded-full py-2 px-3 text-grey-darkest" type="number" name="maximumEmployeesNo" id="employees_number" value={maximumEmployeesNoValue} onChange={(e) => setMaximumEmployeeNoValue(e.target.value)}/>
                     </div>
                     <button className="bg-blue-500 hover:bg-green-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500" type="submit">
-                        Update
+                        Save
                     </button>
                     <button className='bg-blue-500 hover:bg-red-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' onClick={handleClose}>
                         Close

@@ -4,6 +4,7 @@ import axios from 'axios';
 import SalonBodyUpdate from '../Modals/SalonModalBodyUpdate';
 import HeromedSectionImagePlaceholder from '../../assets/Images/HeromedSectionImagePlaceholder.jpg'
 import Button from '@mui/material/Button';
+import ModalContainer from '../../Components/Modals/ModalContainer';
 import LoadingHandler from '../../common/LoadingHandler'
 import { BiTrash } from "react-icons/bi";
 import {AiFillEdit} from "react-icons/ai";
@@ -14,7 +15,7 @@ function SalonCardComponent({ cardData }) {
   const showModal = () => {
     setIsModalOpen(!isModalOpen);
     setModalBody(<SalonBodyUpdate setIsModalOpen= {setIsModalOpen} cardData={cardData}></SalonBodyUpdate>);
-  
+  console.log(cardData);
   }
 
   const deleteEntry = () =>{
@@ -93,6 +94,8 @@ function SalonCardComponent({ cardData }) {
           </div>
         </>
       )}
+     <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody} ></ModalContainer> 
+
     </>
   )
 }
