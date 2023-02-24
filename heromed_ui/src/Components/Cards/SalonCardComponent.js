@@ -1,14 +1,36 @@
 import React, { useState } from 'react'
 import useAxios from '../../hooks/useAxios'
+import axios from 'axios';
+import SalonBodyUpdate from '../Modals/SalonModalBodyUpdate';
 import HeromedSectionImagePlaceholder from '../../assets/Images/HeromedSectionImagePlaceholder.jpg'
 import Button from '@mui/material/Button';
-import add from '../../assets/IconsSvg/vect-icons/add.png'
+import ModalContainer from '../../Components/Modals/ModalContainer';
 import LoadingHandler from '../../common/LoadingHandler'
+import { BiTrash } from "react-icons/bi";
+import {AiFillEdit} from "react-icons/ai";
 
 function SalonCardComponent({ cardData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalBody, setModalBody] = useState();
   const showModal = () => {
     setIsModalOpen(!isModalOpen);
+    setModalBody(<SalonBodyUpdate setIsModalOpen= {setIsModalOpen} cardData={cardData}></SalonBodyUpdate>);
+  console.log(cardData);
+  }
+
+  const deleteEntry = () =>{
+    axios.delete('http://localhost:58160/api/salon/'+cardData.id, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        console.log(response);
+        window.location.reload(false);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   const { data, response, error, loading } = useAxios({
@@ -26,13 +48,18 @@ function SalonCardComponent({ cardData }) {
       ) : (
         <>
           <div className='event-card-container min-w-[430px] min-h-[350px] max-w-[430px] max-h-[350px] rounded-[10px]'>
-            <div className='flex z-20 h-[40px] w-[40px]'>
-              <Button className='w-full h-full' size="medium" onClick={() => showModal()}>
-                <span>
-                  <img src={add} className='flex w-6 h-6 px-1 py-1'></img>
-                </span>
-              </Button>
-            </div>
+          <div className='flex h-20 w-[40px] space-x-4 float-right mr-20'>
+          <div className='flex z-20 h-[40px] w-[40px]'>
+            <Button className='w-full h-full' size="medium" onClick={() => showModal()}>
+              <AiFillEdit className='w-[20px] h-[20px]' color='#000D93'></AiFillEdit>
+            </Button>
+          </div>
+          <div className='flex z-20 h-[40px] w-[40px]'>
+            <Button className='w-full h-full' size='medium' onClick={() => deleteEntry()}>
+              <BiTrash className='w-[20px] h-[20px]'color='#931A00'></BiTrash>
+            </Button>
+          </div>
+        </div>
             <div className='relative h-[150px] w-full'>
               <img src={HeromedSectionImagePlaceholder} className='absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px]' />
               <div className='z-10 flex flex-col justify-between h-full'>
@@ -48,7 +75,7 @@ function SalonCardComponent({ cardData }) {
               <div className='flex flex-col justify-start w-4/12 h-full mt-1 ml-3 mr-2 gap-10'>
                 <div className='flex flex-col pt-1'>
                   <span className='mt-1 text-sm font-bold text-center leading-none'>{salonAvailable}</span>
-                  <span>Capacity: <PatientsCount id = {cardData.id}></PatientsCount>/{cardData.beds}</span>
+                  <span>Capacity: 0/{cardData.beds}</span>
                 </div>
                 <div className='flex flex-col pt-1'>
                   <Button size="small">Show related data</Button>
@@ -67,31 +94,10 @@ function SalonCardComponent({ cardData }) {
           </div>
         </>
       )}
+     <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody} ></ModalContainer> 
+
     </>
   )
 }
 
 export default SalonCardComponent
-
-function PatientsCount(props){
-  const {data, response, error, loading} = useAxios({
-    method: 'get',
-    url: `/api/patient/patientSalon/${props.id}`
-  });
-  var numberOfCurrentPatients = 0;
-  if(data){
-    numberOfCurrentPatients = data.length;
-  }
-  return ( 
-    <>
-      {loading? (
-        <LoadingHandler />
-        ) : (
-        <>
-           <span> {numberOfCurrentPatients}</span>
-        </>
-    )}
-    </>
-  )
-
-}

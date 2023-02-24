@@ -4,7 +4,6 @@ import axios from 'axios';
 
 
 const SectionBody = ({cardData, setIsModalOpen})  => {
-  console.log(cardData);
   const { id, title, description, maximumEmployeesNo} = cardData;  
   const [titleValue, setTitleValue] = useState(title);
   const [descriptionValue, setDescriptionValue] = useState(description);
@@ -40,20 +39,20 @@ const SectionBody = ({cardData, setIsModalOpen})  => {
                 <form className="mb-4 md:flex md:flex-wrap md:justify-between" action="/" method="post" onSubmit={handleSubmit}>
                     <div className="flex flex-col mb-4 md:w-full">
                         <label className="mb-2 uppercase tracking-wide font-bold text-lg text-grey-darkest" htmlFor="section_title">Title</label>
-                        <input className="border py-2 px-3 text-grey-darkest" type="text" name="title" id="section_title" value={titleValue} onChange={(e) => setTitleValue(e.target.value)}/>
+                        <input className="border rounded-full py-2 px-3 text-grey-darkest" type="text" name="title" id="section_title" value={titleValue} onChange={(e) => setTitleValue(e.target.value)}/>
                     </div>
                     <div className="flex flex-col mb-4 md:w-full">
                         <label className="mb-2 uppercase font-bold text-lg text-grey-darkest " htmlFor="section_description">Description</label>
-                        <input className="border py-2 px-3 text-grey-darkest" type="text" name="description" id="section_description" value={descriptionValue} onChange={(e) => setDescriptionValue(e.target.value)}/>
+                        <input className="border rounded-full py-2 px-3 text-grey-darkest" type="text" name="description" id="section_description" value={descriptionValue} onChange={(e) => setDescriptionValue(e.target.value)}/>
                     </div>
                     <div className="flex flex-col mb-4 md:w-full">
                         <label className="mb-2 uppercase font-bold text-lg text-grey-darkest" htmlFor="employees_number">Maximum Employees Number</label>
-                        <input className="border py-2 px-3 text-grey-darkest" type="number" name="maximumEmployeesNo" id="employees_number" value={maximumEmployeesNoValue} onChange={(e) => setMaximumEmployeeNoValue(e.target.value)}/>
+                        <input className="border rounded-full py-2 px-3 text-grey-darkest" type="number" name="maximumEmployeesNo" id="employees_number" value={maximumEmployeesNoValue} onChange={(e) => setMaximumEmployeeNoValue(e.target.value)}/>
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                        Update
+                    <button className="bg-blue-500 hover:bg-green-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500" type="submit">
+                        Save
                     </button>
-                    <button className='bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={handleClose}>
+                    <button className='bg-blue-500 hover:bg-red-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' onClick={handleClose}>
                         Close
                     </button>
                 </form>

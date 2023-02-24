@@ -4,7 +4,7 @@ import LoadingHandler from '../../common/LoadingHandler'
 import useAxios from '../../hooks/useAxios'
 import Button from '@mui/material/Button'
 import ModalContainer from '../../Components/Modals/ModalContainer'
-import SalonBody from '../../Components/Modals/SectionModalBodyAdd'
+import SalonBody from '../../Components/Modals/SalonModalBodyAdd'
 import add from '../../assets/IconsSvg/vect-icons/add.png'
 import SalonCardComponent from '../../Components/Cards/SalonCardComponent'
 
@@ -19,8 +19,8 @@ function SalonsPage(){
     const [modalBody, setModalBody] = useState();
     
     const showModal =() =>{
-        setIsModalOpen(!isModalOpen);
-        setIsModalOpen(<SalonBody setIsModalOpen ={setIsModalOpen}></SalonBody>);
+      setIsModalOpen(!isModalOpen)
+      setModalBody(<SalonBody setIsModalOpen= {setIsModalOpen} ></SalonBody>);
     }
 
 return (
@@ -32,8 +32,8 @@ return (
           </span>
           <b>Add salon</b></Button>
       </div>
-        <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer> 
-
+        {<ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer>}
+        {/* <SalonBody setIsModalOpen ={isModalAddOpen}></SalonBody> */}
       {loading ? (
         <LoadingHandler />
       ) : (
