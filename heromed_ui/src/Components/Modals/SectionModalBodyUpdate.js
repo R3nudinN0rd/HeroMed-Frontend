@@ -50,10 +50,10 @@ const SectionBody = ({cardData, setIsModalOpen})  => {
                         <label className="mb-2 uppercase font-bold text-lg text-grey-darkest" htmlFor="employees_number">Maximum Employees Number</label>
                         <input className="border rounded-full py-2 px-3 text-grey-darkest" type="number" name="maximumEmployeesNo" id="employees_number" value={maximumEmployeesNoValue} onChange={(e) => setMaximumEmployeeNoValue(e.target.value)}/>
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    <button className="bg-blue-500 hover:bg-green-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500" type="submit">
                         Update
                     </button>
-                    <button className='bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={handleClose}>
+                    <button className='bg-blue-500 hover:bg-red-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' onClick={handleClose}>
                         Close
                     </button>
                 </form>

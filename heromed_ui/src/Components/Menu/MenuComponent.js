@@ -23,7 +23,7 @@ function MenuComponent() {
                       <div
                         className={
                           isActive
-                            ? 'flex items-center justify-center w-10 h-10 bg-e-orange rounded-xl'
+                            ? 'flex items-center justify-center w-10 h-10 bg-blue-400 rounded-xl'
                             : 'flex items-center justify-center w-10 h-10 bg-dark-blue rounded-xl'
                         }
                       >

@@ -18,7 +18,7 @@ function SalonCardComponent({ cardData }) {
   }
 
   const deleteEntry = () =>{
-    axios.delete('/api/salon/'+cardData.id, {
+    axios.delete('http://localhost:58160/api/salon/'+cardData.id, {
       headers: {
         'Content-Type': 'application/json'
       }
