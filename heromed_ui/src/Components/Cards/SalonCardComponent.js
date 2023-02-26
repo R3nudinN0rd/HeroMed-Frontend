@@ -15,7 +15,6 @@ function SalonCardComponent({ cardData }) {
   const showModal = () => {
     setIsModalOpen(!isModalOpen);
     setModalBody(<SalonBodyUpdate setIsModalOpen= {setIsModalOpen} cardData={cardData}></SalonBodyUpdate>);
-  console.log(cardData);
   }
 
   const deleteEntry = () =>{
@@ -37,6 +36,12 @@ function SalonCardComponent({ cardData }) {
     method: 'get',
     url: `/api/sections/section/${cardData.sectionId}`,
   });
+
+  const { dataP, responseP, errorP, loadingP } = useAxios({
+    method: 'get',
+    url: `/api/salon/patients/${cardData.id}`,
+  });
+
 
   var salonAvailable;
   if (cardData.available) salonAvailable = "Available";
@@ -75,14 +80,24 @@ function SalonCardComponent({ cardData }) {
               <div className='flex flex-col justify-start w-4/12 h-full mt-1 ml-3 mr-2 gap-10'>
                 <div className='flex flex-col pt-1'>
                   <span className='mt-1 text-sm font-bold text-center leading-none'>{salonAvailable}</span>
-                  <span>Capacity: 0/{cardData.beds}</span>
+                  {loadingP?(
+                    <LoadingHandler/>
+                  ):(
+                  <>
+                  <span>Capacity: {dataP && dataP.map((p) => p)}/{cardData.beds}</span>
+                  </>
+                  )}
                 </div>
                 <div className='flex flex-col pt-1'>
                   <Button size="small">Show related data</Button>
                 </div>
               </div>
               <span className='border-r-[1px] my-4 border-gray-border'></span>
-              <div className='w-3/5 h-full px-2 pt-2'>
+              <div className='flex flex-col w-3/5 h-full px-2 pt-2'>
+                <div className='leading-5 min-h-[50px] w-[240px] text-ellipsis max-h-[150px] overflow-hidden text-description-text font-medium flex flex-col pt-1'>
+                  <span className='text-sm font-medium opacity-50'>Floor</span>
+                  <a>{cardData.floor}</a>
+                </div>
                 <div className='leading-5 min-h-[150px] w-[240px] text-ellipsis max-h-[150px] overflow-hidden text-description-text font-medium flex flex-col pt-1'>
                   <span className='text-sm font-medium opacity-50'>Correspondent section </span>
                   <a>{data.title}</a>

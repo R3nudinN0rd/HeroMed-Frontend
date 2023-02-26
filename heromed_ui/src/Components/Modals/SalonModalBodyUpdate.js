@@ -4,8 +4,7 @@ import useAxios from '../../hooks/useAxios';
 
 
 const SalonBody = ({props, cardData, setIsModalOpen}) => {
-
-    const {id, floor, salonNumber,beds, availableCD, sectionId} = cardData;
+    var {id, floor, salonNumber,beds, availableCD, sectionId} = cardData;
     const [floorValue, setFloorValue] = useState(floor);
     const [salonNumberValue, setSalonNumberValue] = useState(salonNumber);
     const [bedsValue, setBedsValue] = useState(beds);
@@ -31,8 +30,9 @@ const SalonBody = ({props, cardData, setIsModalOpen}) => {
 
     const handleSubmit = (event) => {
         console.log(inputValues)
+        floor=floorValue; salonNumber=salonNumberValue; beds=parseInt(bedsValue);sectionId=sectionIdValue; 
         event.preventDefault();
-        axios.put('http://localhost:58160/api/salon/'+id, inputValues, {
+        axios.put('http://localhost:58160/api/salon/'+id, {floor, salonNumber, beds, available, sectionId}, {
             headers: {
                 'ContentType': 'application/json'
             }
@@ -69,7 +69,6 @@ const SalonBody = ({props, cardData, setIsModalOpen}) => {
                         <input className='border rounded-full py-2 px-3 text-grey-darkest' type="number" name="floor" id="salon_floor" value={floorValue} onChange={(e) => setFloorValue(e.target.value)} required/>
                     </div>
                     <div className='w-full flex flex-col mb-4'>
-                        <input className='hidden' id='available' name='available' required/>
                         <span>
                             <label className='mb-2 upercase tracking-wide font-bold text-lg text-grey-darkest'>Salon status</label>
                         </span>

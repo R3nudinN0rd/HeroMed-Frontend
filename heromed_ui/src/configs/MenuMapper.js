@@ -1,7 +1,7 @@
 import React from 'react'
 
 import OrganisationSVG from '../shared/IconComponents/organisationSVG'
-import MyEventsSVG from '../shared/IconComponents/myEventsSVG'
+import SalonSVG from '../shared/IconComponents/salonSVG'
 import HistoryEventSVG from '../shared/IconComponents/pastEventsSVG'
 import CreateEventSVG from '../shared/IconComponents/createEventSVG'
 import ListOfEventsSVG from '../shared/IconComponents/listOfEventsSVG'
@@ -20,7 +20,7 @@ function MenuMapper() {
     {
       'name':'Salons',
       'url':'/salon',
-      'icon':<OrganisationSVG/>,
+      'icon':<SalonSVG/>,
       'element':<SalonsPage/>
     }
   ]
