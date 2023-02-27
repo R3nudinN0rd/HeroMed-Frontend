@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import ErrorHandler from '../../common/ErrorHandler'
 import LoadingHandler from '../../common/LoadingHandler'
 import useAxios from '../../hooks/useAxios'
-import Button from '@mui/material/Button'
 import ModalContainer from '../../Components/Modals/ModalContainer'
 import SalonBody from '../../Components/Modals/SalonModalBodyAdd'
 import {MdAdd} from 'react-icons/md';

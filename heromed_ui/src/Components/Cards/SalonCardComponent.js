@@ -6,6 +6,7 @@ import HeromedSectionImagePlaceholder from '../../assets/Images/HeromedSectionIm
 import Button from '@mui/material/Button';
 import ModalContainer from '../../Components/Modals/ModalContainer';
 import LoadingHandler from '../../common/LoadingHandler'
+import CurrentPatients from './MicelaneousComponents/CurrentNumberOfPatients';
 import { BiTrash } from "react-icons/bi";
 import {AiFillEdit} from "react-icons/ai";
 
@@ -32,14 +33,9 @@ function SalonCardComponent({ cardData }) {
       });
   }
 
-  const { data, response, error, loading } = useAxios({
+  const { data, loading } = useAxios({
     method: 'get',
     url: `/api/sections/section/${cardData.sectionId}`,
-  });
-
-  const { dataP, responseP, errorP, loadingP } = useAxios({
-    method: 'get',
-    url: `/api/salon/patients/${cardData.id}`,
   });
 
 
@@ -80,13 +76,7 @@ function SalonCardComponent({ cardData }) {
               <div className='flex flex-col justify-start w-4/12 h-full mt-1 ml-3 mr-2 gap-10'>
                 <div className='flex flex-col pt-1'>
                   <span className='mt-1 text-sm font-bold text-center leading-none'>{salonAvailable}</span>
-                  {loadingP?(
-                    <LoadingHandler/>
-                  ):(
-                  <>
-                  <span>Capacity: {dataP && dataP.map((p) => p)}/{cardData.beds}</span>
-                  </>
-                  )}
+                  <span>Capacity: <CurrentPatients salonId={cardData.id}/>/{cardData.beds}</span>       
                 </div>
                 <div className='flex flex-col pt-1'>
                   <Button size="small">Show related data</Button>
