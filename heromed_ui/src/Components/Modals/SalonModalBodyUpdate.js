@@ -3,16 +3,16 @@ import axios from 'axios';
 import useAxios from '../../hooks/useAxios';
 
 
-const SalonBody = ({props, cardData, setIsModalOpen}) => {
+const SalonBody = ({cardData, setIsModalOpen}) => {
     var {id, floor, salonNumber,beds, availableCD, sectionId} = cardData;
     const [floorValue, setFloorValue] = useState(floor);
     const [salonNumberValue, setSalonNumberValue] = useState(salonNumber);
     const [bedsValue, setBedsValue] = useState(beds);
-    const [availableCDValue, setAvailableCDValue] = useState(availableCD);
+    const [, setAvailableCDValue] = useState(availableCD);
     const [sectionIdValue, setSectionIdValue] = useState(sectionId);
     const [inputValues, setInputValues] = useState({});
     const [available, setAvailable] = useState(true);
-    const { data, response, error, loading } = useAxios({
+    const { data} = useAxios({
         method: 'get',
         url: `/api/sections`,
     });
@@ -23,9 +23,6 @@ const SalonBody = ({props, cardData, setIsModalOpen}) => {
         setIsModalOpen();
     }
 
-    let obj = {
-
-    }
     
 
     const handleSubmit = (event) => {

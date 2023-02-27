@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const OrganisationSVG = (props) => (
+const OrganisationSVG = () => (
   <svg width="24" 
        height="24" 
        viewBox="0 0 24 24" 

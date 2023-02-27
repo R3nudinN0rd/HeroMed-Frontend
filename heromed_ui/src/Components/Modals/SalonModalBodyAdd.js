@@ -7,7 +7,7 @@ const SalonBody = (props) => {
     const [inputValues, setInputValues] = useState({});
     const [available, setAvailable] = useState(true);
 
-    const { data, response, error, loading } = useAxios({
+    const { data} = useAxios({
         method: 'get',
         url: `/api/sections`,
     });
@@ -24,9 +24,6 @@ const SalonBody = (props) => {
         props.setIsModalOpen(false);
     }
 
-    let obj = {
-
-    }
     
 
     const handleSubmit = (event) => {

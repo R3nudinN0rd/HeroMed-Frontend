@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const SalonSVG = (props) => (
+const SalonSVG = () => (
   <svg stroke="currentColor" 
        fill="currentColor"
        viewBox="0 0 512 512" 
