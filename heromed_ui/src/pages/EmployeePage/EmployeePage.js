@@ -4,7 +4,7 @@ import LoadingHandler from '../../common/LoadingHandler';
 import useAxios from '../../hooks/useAxios';
 import ModalContainer from '../../Components/Modals/ModalContainer';
 import { MdAdd } from 'react-icons/md';
-//import EmployeeBody from '../..Components/Modals/EmployeeModalBodyAdd';
+import EmployeeBody from '../../Components/Modals/EmployeeModalBodyAdd';
 import EmployeeCardComponent from '../../Components/Cards/EmployeeCardComponent';
 
 function EmployeePage() {
@@ -12,13 +12,13 @@ function EmployeePage() {
         method: 'get',
         url: '/api/employees',
     })
-
+    
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalBody, setModalBody] = useState();
 
     const showModal = () => {
         setIsModalOpen(!isModalOpen);
-        setModalBody(/* <EmployeeBody setIsModalOpen = {setIsModalOpen}></EmployeeBody> */)
+        setModalBody(<EmployeeBody setIsModalOpen = {setIsModalOpen}></EmployeeBody>)
     }
 
     return (

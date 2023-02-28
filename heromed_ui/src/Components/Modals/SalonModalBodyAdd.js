@@ -27,7 +27,6 @@ const SalonBody = (props) => {
     
 
     const handleSubmit = (event) => {
-        console.log(inputValues)
         event.preventDefault();
         axios.post('http://localhost:58160/api/salon/', inputValues, {
             headers: {

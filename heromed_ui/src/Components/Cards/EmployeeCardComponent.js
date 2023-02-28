@@ -9,20 +9,21 @@ import Button from '@mui/material/Button';
 import SectionTitle from "./MicelaneousComponents/SectionTitleForCard";
 import JobTitle from "./MicelaneousComponents/JobTitleForCard";
 import HeromedSectionImagePlaceholder from '../../assets/Images/HeromedSectionImagePlaceholder.jpg'
-//import EmployeeBodyUpdate from '../Modals/EmployeeModalBodyUpdate';
+import EmployeeBodyUpdate from '../Modals/EmployeeModalBodyUpdate';
+import SalonBodyUpdate from '../Modals/SalonModalBodyUpdate';
 
 function EmployeeCardComponent({ cardData }) {
-    const [isModalAddOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalBody, setModalBody] = useState();
 
     const employmentDate = new Date(cardData.employmentDate);
     const dateString = employmentDate.getDate() + "-" + (employmentDate.getMonth()+1) + "-" + employmentDate.getFullYear();
     const showModal = () => {
-        setIsModalOpen(!isModalAddOpen);
-        setModalBody(/*<EmployeeBodyUpdate setIsModalOpen = {setIsMOdalOpen} cardData={cardData}></EmployeeBodyUpdate>*/)
+        setIsModalOpen(!isModalOpen);
+        setModalBody(<EmployeeBodyUpdate setIsModalOpen = {setIsModalOpen} cardData={cardData}></EmployeeBodyUpdate>)
     }
     const deleteEntry = () => {
-        axios.delete(`http://localhost:58160/api/employees/id/${cardData.id})`, {
+        axios.delete('http://localhost:58160/api/employees/id/'+cardData.id, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -40,7 +41,7 @@ function EmployeeCardComponent({ cardData }) {
         
         <>
             <div className="event-card-container min-w-[430px] min-h-[350px] max-w-[430px] max-h-[350px] rounded-[10px]">
-                <div className="flex h-20 w-[40px] spaxe-x-4 float-right mr-20">
+                <div className="relative flex h-20 w-[40px] spaxe-x-4 float-right mr-20 z-40">
                     <div className="flex z-20 h-[40px] w-[40px]">
                         <Button className="w-full h-full" size='medium' onClick={() => showModal()}>
                             <AiFillEdit className="w-[20px] h-[20px]" color="#000D93"></AiFillEdit>
@@ -52,9 +53,9 @@ function EmployeeCardComponent({ cardData }) {
                         </Button>
                     </div>
                 </div>
-                <div className="relative h-[150px] w-full">
-                    <img src={HeromedSectionImagePlaceholder} className="absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px]"/>
-                    <div className="z-10 flex flex-col justify-between h-full">
+                <div className="relative h-[150px] w-full group">
+                    <img src={HeromedSectionImagePlaceholder} className="absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px] overflow-hidden duration-700 group-hover:scale-125 group-hover:z-30  group-hover:h-48" />
+                    <div className="z-10 flex flex-col justify-between h-full group-hover:opacity-0 duration-700">
                         <div className="z-10 flex flex-col items-end pt-2 pr-2"></div>
                         <span className="absolute bottom-0 z-10 w-full h-16 dark-to-transparent-card"></span>
                         <span className="z-10 flex items-center justify-center h-10 mx-8">
@@ -95,6 +96,7 @@ function EmployeeCardComponent({ cardData }) {
                 </div>
                 
             </div>
+            <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer>
         </>
         )}
   
