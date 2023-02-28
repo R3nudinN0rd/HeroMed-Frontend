@@ -1,13 +1,12 @@
 import React from 'react'
 
 import OrganisationSVG from '../shared/IconComponents/organisationSVG'
-import MyEventsSVG from '../shared/IconComponents/myEventsSVG'
-import HistoryEventSVG from '../shared/IconComponents/pastEventsSVG'
-import CreateEventSVG from '../shared/IconComponents/createEventSVG'
-import ListOfEventsSVG from '../shared/IconComponents/listOfEventsSVG'
-import AdminSVG from '../shared/IconComponents/adminSVG'
+import SalonSVG from '../shared/IconComponents/salonSVG'
+import PatientSVG from '../shared/IconComponents/patientSVG'
+import EmployeeSVG from '../shared/IconComponents/employeeSVG'
 import SectionPage from '../pages/SectionsPage/SectionPage'
 import SalonsPage from '../pages/SalonsPage/SalonPage'
+import EmployeesPage from '../pages/EmployeePage/EmployeePage'
 
 function MenuMapper() {
   return [
@@ -18,10 +17,22 @@ function MenuMapper() {
       'element': <SectionPage />,
     },
     {
-      'name':'Salons',
+      'name':'Salon',
       'url':'/salon',
-      'icon':<OrganisationSVG/>,
+      'icon':<SalonSVG/>,
       'element':<SalonsPage/>
+    },
+    {
+      'name':'Employees',
+      'url':'/employee',
+      'icon':<EmployeeSVG/>,
+      'element':<EmployeesPage/>
+    },
+    {
+      'name':'Patients',
+      'url':'/patient',
+      'icon': <PatientSVG/>,
+      'element': <EmployeesPage/>
     }
   ]
 }

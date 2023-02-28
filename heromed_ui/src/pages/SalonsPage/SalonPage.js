@@ -2,10 +2,9 @@ import React, {useState} from 'react'
 import ErrorHandler from '../../common/ErrorHandler'
 import LoadingHandler from '../../common/LoadingHandler'
 import useAxios from '../../hooks/useAxios'
-import Button from '@mui/material/Button'
 import ModalContainer from '../../Components/Modals/ModalContainer'
-import SalonBody from '../../Components/Modals/SectionModalBodyAdd'
-import add from '../../assets/IconsSvg/vect-icons/add.png'
+import SalonBody from '../../Components/Modals/SalonModalBodyAdd'
+import {MdAdd} from 'react-icons/md';
 import SalonCardComponent from '../../Components/Cards/SalonCardComponent'
 
 function SalonsPage(){
@@ -19,21 +18,22 @@ function SalonsPage(){
     const [modalBody, setModalBody] = useState();
     
     const showModal =() =>{
-        setIsModalOpen(!isModalOpen);
-        setIsModalOpen(<SalonBody setIsModalOpen ={setIsModalOpen}></SalonBody>);
+      setIsModalOpen(!isModalOpen)
+      setModalBody(<SalonBody setIsModalOpen= {setIsModalOpen} ></SalonBody>);
     }
 
 return (
     <div className='linear-bg-content h-[750px] w-full relative overflow-hidden'>
       <div className={isModalOpen?'flex flex-row justify-center hidden':'flex flex-row justify-center'}  >
-        <Button size="small" onClick={() => showModal()}>
-          <span>
-          <img src={add} className='flex w-4 h-4 px-1 py-1'></img>
+      <button className='bg-blue-500 hover:bg-green-500 font-bold py-2 rounded focus:outline-none focus:shadow-outline xl:hover:px-96 md:hover:px-40 xs:hover:px-20 hover:py-1 px-5 text-white duration-500' onClick={() => showModal()}>
+          <span className='flex flex-row '>
+          <MdAdd className='w-6 h-6 mx-1' color='#FFFFFF'></MdAdd>
+          <b>Add section</b>
           </span>
-          <b>Add salon</b></Button>
+          </button>
       </div>
-        <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer> 
-
+        {<ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer>}
+        {/* <SalonBody setIsModalOpen ={isModalAddOpen}></SalonBody> */}
       {loading ? (
         <LoadingHandler />
       ) : (

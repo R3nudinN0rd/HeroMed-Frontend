@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import HeroMed from '../../assets/Logo/HeroMed.png'
-import { BrowserRouter as Router, Switch, Route, Link, NavLink } from 'react-router-dom'
+import { BrowserRouter as Router, NavLink } from 'react-router-dom'
 
 import MenuMapper from '../../configs/MenuMapper'
 import { userRoleForDataBase } from '../../configs/endpointsConfig'
@@ -23,7 +23,7 @@ function MenuComponent() {
                       <div
                         className={
                           isActive
-                            ? 'flex items-center justify-center w-10 h-10 bg-e-orange rounded-xl'
+                            ? 'flex items-center justify-center w-10 h-10 bg-blue-400 rounded-xl'
                             : 'flex items-center justify-center w-10 h-10 bg-dark-blue rounded-xl'
                         }
                       >
