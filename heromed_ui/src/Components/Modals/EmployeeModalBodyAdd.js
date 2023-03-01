@@ -12,8 +12,6 @@ const EmployeeBody = (props) => {
             ...inputValues,
             [event.target.name]: event.target.value
         });
-
-        console.log(inputValues);
     }
 
     const handleClose = () => {
@@ -21,8 +19,6 @@ const EmployeeBody = (props) => {
     }
 
     const handleSubmit = (event) => {
-        
-        console.log(inputValues);
         axios.post('http://localhost:58160/api/employees', inputValues, {
             headers: {
                 'ContentType': 'application/json'

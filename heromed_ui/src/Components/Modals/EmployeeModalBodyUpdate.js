@@ -65,7 +65,7 @@ function EmployeeBodyUpdate({ cardData, setIsModalOpen }) {
     }, [birthdate])
 
     return (
-        <div className='flex w-full h-3/4 items-center bg-teal-lighter '>
+        <div className='flex w-full mt-[-100px] h-3/4 items-center bg-teal-lighter '>
             <div className='w-2/5 max-h-[600px] bg-white rounded shadow-lg p-8 m-4 overflow-y-scroll md:w-3/5 md:mx-auto'>
                 <form className='mb-4 col-1 md:flex md:flex-wrap md:justify-between' action='/' method='post' onSubmit={handleSubmit}>
                     <div className='flex flex-col w-full'>

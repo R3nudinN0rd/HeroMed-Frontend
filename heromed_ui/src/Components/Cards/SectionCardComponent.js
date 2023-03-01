@@ -5,19 +5,19 @@ import Button from '@mui/material/Button';
 import ModalContainer from '../../Components/Modals/ModalContainer';
 import SectionBodyUpdate from '../Modals/SectionModalBodyUpdate';
 import { BiTrash } from "react-icons/bi";
-import {AiFillEdit} from "react-icons/ai";
+import { AiFillEdit } from "react-icons/ai";
 
-function SectionCardComponent({ cardData}) {
+function SectionCardComponent({ cardData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalBody, setModalBody] = useState();
-  
-  const showModal =()=>{
+
+  const showModal = () => {
     setIsModalOpen(!isModalOpen);
-    setModalBody(<SectionBodyUpdate setIsModalOpen= {setIsModalOpen} cardData={cardData}></SectionBodyUpdate>);
+    setModalBody(<SectionBodyUpdate setIsModalOpen={setIsModalOpen} cardData={cardData}></SectionBodyUpdate>);
   }
 
-  const deleteEntry = () =>{
-    axios.delete('http://localhost:58160/api/sections/'+cardData.id, {
+  const deleteEntry = () => {
+    axios.delete('http://localhost:58160/api/sections/' + cardData.id, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -34,7 +34,7 @@ function SectionCardComponent({ cardData}) {
   return (
     <>
       <div className='event-card-container min-w-[430px] min-h-[400px] max-w-[430px] max-h-[400px] rounded-[10px]'>
-        <div className='flex h-20 w-[40px] space-x-4 float-right mr-20'>
+        <div className='relative flex h-20 w-[40px] space-x-4 float-right mr-20 z-40'>
           <div className='flex z-20 h-[40px] w-[40px]'>
             <Button className='w-full h-full' size="medium" onClick={() => showModal()}>
               <AiFillEdit className='w-[20px] h-[20px]' color='#000D93'></AiFillEdit>
@@ -42,12 +42,12 @@ function SectionCardComponent({ cardData}) {
           </div>
           <div className='flex z-20 h-[40px] w-[40px]'>
             <Button className='w-full h-full' size='medium' onClick={() => deleteEntry()}>
-              <BiTrash className='w-[20px] h-[20px]'color='#931A00'></BiTrash>
+              <BiTrash className='w-[20px] h-[20px]' color='#931A00'></BiTrash>
             </Button>
           </div>
         </div>
-        <div className='relative h-[150px] w-full'>
-          <img src={HeromedSectionImagePlaceholder} className='absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px]' />
+        <div className='relative h-[150px] w-full  group'>
+          <img src={HeromedSectionImagePlaceholder} className='absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px] overflow-hidden duration-700 group-hover:scale-125 group-hover:z-30  group-hover:h-48' />
           <div className='z-10 flex flex-col justify-between h-full'>
             <div className='z-10 flex flex-col items-end pt-2 pr-2'>
             </div>
@@ -78,7 +78,7 @@ function SectionCardComponent({ cardData}) {
           </div>
         </div>
       </div>
-      <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody} ></ModalContainer> 
+      <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody} ></ModalContainer>
     </>
   )
 }
