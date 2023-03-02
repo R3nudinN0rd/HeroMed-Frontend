@@ -10,6 +10,7 @@ import { BiTrash } from 'react-icons/bi';
 import { AiFillEdit } from 'react-icons/ai';
 import SalonNumber from "./MicelaneousComponents/SalonNumberForCard";
 import LargeTextModal from '../Modals/LargeTextModal';
+import { ToastContainer } from 'react-toastify';
 
 function PatientCardComponent({ cardData }) {
     const [isModalOpenText, setIsModalOpenText] = useState(false);
@@ -44,6 +45,7 @@ function PatientCardComponent({ cardData }) {
                 console.log(error)
             });
     }
+
     
     useEffect(() => {
         const enrDate = new Date(cardData.enrolledDate);
@@ -58,6 +60,7 @@ function PatientCardComponent({ cardData }) {
     return (
         <>
             <div className='event-card-container min-w-[430px] min-h-[450px] max-w-[430px] max-h-[450px] rounded-[10px]'>
+                <ToastContainer/>
                 <div className='relative flex h-20 w-[40px] space-x-4 float-right mr-20 z-40'>
                     <div className='flex z-20 h-[40px] w-[40px]'>
                         <Button className='w-full h-full' size="medium" onClick={() => showModal()}>

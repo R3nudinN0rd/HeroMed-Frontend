@@ -7,8 +7,6 @@ import {MdAdd} from 'react-icons/md';
 import ModalContainer from '../../Components/Modals/ModalContainer'
 import SectionBody from '../../Components/Modals/SectionModalBodyAdd'
 
-
-
 function SectionsPage() { 
   const { data, loading, error } = useAxios({
     method: 'get',
@@ -33,7 +31,7 @@ const showModal =()=>{
           </span>
           </button>
       </div>
-        { <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer> }
+      <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer>
 
       {loading ? (
         <LoadingHandler />

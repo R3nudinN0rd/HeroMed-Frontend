@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SalonDropBox from '../Cards/MicelaneousComponents/SalonDropBox';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import TextField from '@mui/material/TextField';
+
 
 
 const PatientBody = ({ cardData, setIsModalOpen }) => {
@@ -54,13 +53,22 @@ const PatientBody = ({ cardData, setIsModalOpen }) => {
     }
 
     useEffect(() => {
+
+        const checkZero = (date) => 
+            date <= 9 ? `0${eDate.getMonth() + 1}` : date
+
+
+
         const bDate = new Date(birthDate);
         const eDate = new Date(enrolledDate);
+        const dDate = new Date(dischargeDate)
         const bDateToString = `${bDate.getDate()}-${bDate.getMonth() + 1}-${bDate.getFullYear()}`;
-        const eDateToString = `${eDate.getDate()}-${eDate.getMonth() + 1}-${eDate.getFullYear()}`;
+        const eDateToString = `${dDate.getDate()}-${dDate.getMonth() + 1}-${dDate.getFullYear()}`;
+        const dDateToString = `${eDate.getFullYear()}-${checkZero(eDate.getMonth() + 1)}-${checkZero(eDate.getDate())}`;
         setBirthdateValue(bDateToString);
         setEnrolledDateValue(eDateToString);
-    })
+        setDischargeDateValue(dDateToString)
+    }, [])
 
     return (
         <div className='flex w-full -mt-28 h-3/4 items-center bg-teal-lighter'>
@@ -121,22 +129,12 @@ const PatientBody = ({ cardData, setIsModalOpen }) => {
                         <div className='flex flex-row w-full'>
                             <div className='flex flex-col w-full'>
                                 <label className='mb-2 uppercase tracking-tab font-bold text-lg text-grey-darkest' htmlFor='enrolledDate'>Enrolled date</label>
-                                <input className='border text-center rounded-full py-2 px-3 text-grey-darkest' name='enrolledDate' id='enrolledDate' type='text' value={enrolledDateValue} disabled />
+                                <input className='border text-center rounded-full py-2 px-3 text-grey-darkest' name='enrolledDate' id='enrolledDate' type='text'  value={enrolledDateValue} disabled />
                             </div>
                             <div className='flex flex-col w-full'>
-                                {/* <label className='mb-2 uppercase tracking-tab font-bold text-lg text-grey-darkest' htmlFor='dischargeDate'>Discharged date</label>
-                                <input className='border text-center rounded-full py-2 px-3 text-grey-darkest' name='dischargeDate' id='dischargeDate'  type='date'  required/> */}
-                                <DatePicker
-                                    disableFuture
-                                    label="Responsive"
-                                    openTo="year"
-                                    views={['year', 'month', 'day']}
-                                    value={dischargeDateValue}
-                                    onChange={(e) => {
-                                        setDischargeDateValue(e.target.value);
-                                    }}
-                                    renderInput={(params) => <TextField {...params} />}
-                                />
+                                <label className='mb-2 uppercase tracking-tab font-bold text-lg text-grey-darkest' htmlFor='dischargeDate'>Discharged date</label>
+                                <input className='border text-center rounded-full py-2 px-3 text-grey-darkest' name='dischargeDate' id='dischargeDate'  type='date' value={dischargeDateValue} onChange={(e) => setDischargeDateValue(e.target.value)} required/> 
+                                
                             </div>
                             <div className='flex flex-col w-full'>
                                 <label className='mb-2 uppercase tracking-tab font-bold text-lg text-grey-darkest' htmlFor='salonId'>Salon number</label>
