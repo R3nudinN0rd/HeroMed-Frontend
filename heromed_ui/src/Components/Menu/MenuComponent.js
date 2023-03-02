@@ -34,6 +34,7 @@ function MenuComponent() {
                   </span>
                 )}
               </NavLink>
+              
             )
           })}
         </div>

@@ -26,7 +26,6 @@ const SalonBody = ({cardData, setIsModalOpen}) => {
     
 
     const handleSubmit = (event) => {
-        console.log(inputValues)
         floor=floorValue; salonNumber=salonNumberValue; beds=parseInt(bedsValue);sectionId=sectionIdValue; 
         event.preventDefault();
         axios.put('http://localhost:58160/api/salon/'+id, {floor, salonNumber, beds, available, sectionId}, {

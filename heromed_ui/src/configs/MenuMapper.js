@@ -7,6 +7,7 @@ import EmployeeSVG from '../shared/IconComponents/employeeSVG'
 import SectionPage from '../pages/SectionsPage/SectionPage'
 import SalonsPage from '../pages/SalonsPage/SalonPage'
 import EmployeesPage from '../pages/EmployeePage/EmployeePage'
+import PatientPage from '../pages/PatientPage/PatientPage'
 
 function MenuMapper() {
   return [
@@ -32,7 +33,7 @@ function MenuMapper() {
       'name':'Patients',
       'url':'/patient',
       'icon': <PatientSVG/>,
-      'element': <EmployeesPage/>
+      'element': <PatientPage/>
     }
   ]
 }
