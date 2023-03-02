@@ -1,7 +1,7 @@
 import Ract, { useState, useEffect } from 'react';
 import useAxios from '../../hooks/useAxios';
 import axios from 'axios';
-//import PatientBodyUpdate from '../Modals/PatientModalBodyUpdate';
+import PatientBodyUpdate from '../Modals/PatientModalBodyUpdate';
 import HeromedSectionImagePlaceholder from '../../assets/Images/HeromedSectionImagePlaceholder.jpg'
 import Button from '@mui/material/Button';
 import ModalContainer from '../Modals/ModalContainer';
@@ -12,16 +12,18 @@ import SalonNumber from "./MicelaneousComponents/SalonNumberForCard";
 import LargeTextModal from '../Modals/LargeTextModal';
 
 function PatientCardComponent({ cardData }) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalBody, setModalBody] = useState();
+    const [isModalOpenText, setIsModalOpenText] = useState(false);
+    const [isModalOpenUpdate, setIsModalOpenUpdate] = useState(false)
+    const [modalBodyText, setModalBodyText] = useState();
+    const [modalBodyUpdate, setModalBodyUpdate] = useState()
     const showModal = () => {
-        setIsModalOpen(!isModalOpen);
-        //  setModalBody(<SalonBodyUpdate setIsModalOpen={setIsModalOpen}, cardData={cardData}></SalonBodyUpdate>)
+        setIsModalOpenUpdate(!isModalOpenUpdate);
+        setModalBodyUpdate(<PatientBodyUpdate setIsModalOpen={setIsModalOpenUpdate} cardData={cardData}></PatientBodyUpdate>)
     }
 
     const showDetailsModal = () =>{
-        setIsModalOpen(!isModalOpen);
-        setModalBody(<LargeTextModal setIsModalOpen={setIsModalOpen} text={cardData.issueDetails}></LargeTextModal>)
+        setIsModalOpenText(!isModalOpenText);
+        setModalBodyText(<LargeTextModal setIsModalOpen={setIsModalOpenText} text={cardData.issueDetails}></LargeTextModal>)
     }
 
     const [enrolledDateValue, setEnrolledDateValue] = useState(cardData.enrolledDate);
@@ -104,7 +106,7 @@ function PatientCardComponent({ cardData }) {
                             <div className='flex flex-col leading-5 min-h-[50px] w-[240px] text-ellipsis max-h-[150px] overflow-hidden text-description-text font-medium'>
                                 <span className='text=lg text-bold font-medium text-center'>Contact</span>
                             </div>
-                            <div className='flex flex-col mt-1'>
+                            <div className='flex flex-col -mt-4'>
                                 <span className='text-sm text-bold text-center font-medium opacity-50 px-3'>Phone number</span>
                                 <span className='text-center'>{cardData.phoneNumber}</span>
                             </div>
@@ -125,16 +127,18 @@ function PatientCardComponent({ cardData }) {
                             </div>
                             <div className='flex flex-col mt-1'>
                                 <span className='text-sm text-bold text-center font-medium opacity-50'>Issue details</span>
-                                <div className='flex flex-row justofy-center'>
-                                    <span className='text-center'>{cardData.issueDetails.length > 10 ? `${cardData.issueDetails.substring(0, 30)}...` : cardData.issueDetails}</span>
-                                    <a className=' text-blue-500 font-bold rounded-sm w-[100px] hover:cursor-pointer' onClick={showDetailsModal}>[Expand]</a>
+                                <div className='flex flex-row justofy-between'>
+                                    <span className='text-center px-3'>{cardData.issueDetails.length > 15 ? `${cardData.issueDetails.substring(0, 15)}...` : cardData.issueDetails}</span>
+                                    <a className=' text-blue-500 font-bold rounded-sm w-[100px] hover:cursor-pointer px-3' onClick={showDetailsModal}>[Expand]</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer>
+                    <ModalContainer isModalOpen={isModalOpenText} modalBody={modalBodyText}></ModalContainer>
                 </div>
             </div>
+            <ModalContainer isModalOpen={isModalOpenUpdate} modalBody={modalBodyUpdate}></ModalContainer>
+
         </>
 
     )
