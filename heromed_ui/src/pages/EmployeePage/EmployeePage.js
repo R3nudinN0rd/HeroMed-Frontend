@@ -22,7 +22,7 @@ function EmployeePage() {
     }
 
     return (
-        <div className='linear-bg-content h-[750px] w-full relative overflow-hidden'>
+        <div className='linear-bg-content h-[750px] w-full relative overflow-hidden bg-blue-200'>
             <div className={isModalOpen ? 'flex-row justify-center hidden' : 'flex flex-row justify-center'}>
                 <button className='bg-blue-500 hover:bg-green-500 font-bold py-2 rounded focul:outline-none focus:shadow-outline xl:hover:px-96 md:hover:px-40 xs:hover:px-20 hover:py-1 px-5 text-white duration-500' onClick={() => showModal()}>
                     <span className='flex flex-row'>

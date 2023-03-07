@@ -11,6 +11,7 @@ import { AiFillEdit } from 'react-icons/ai';
 import SalonNumber from "./MicelaneousComponents/SalonNumberForCard";
 import LargeTextModal from '../Modals/LargeTextModal';
 import { ToastContainer } from 'react-toastify';
+import {url} from '../../common/Constants';
 
 function PatientCardComponent({ cardData }) {
     const [isModalOpenText, setIsModalOpenText] = useState(false);
@@ -32,7 +33,7 @@ function PatientCardComponent({ cardData }) {
     const[birthdateValue, setBirthdateValue] = useState(cardData.birthDate);
 
     const deleteEntry = () => {
-        axios.delete('http://localhost:58160/api/patient/' + cardData.id, {
+        axios.delete(url+'/api/patient/' + cardData.id, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -130,7 +131,7 @@ function PatientCardComponent({ cardData }) {
                             </div>
                             <div className='flex flex-col mt-1'>
                                 <span className='text-sm text-bold text-center font-medium opacity-50'>Issue details</span>
-                                <div className='flex flex-row justofy-between'>
+                                <div className='flex flex-row justify-between'>
                                     <span className='text-center px-3'>{cardData.issueDetails.length > 15 ? `${cardData.issueDetails.substring(0, 15)}...` : cardData.issueDetails}</span>
                                     <a className=' text-blue-500 font-bold rounded-sm w-[100px] hover:cursor-pointer px-3' onClick={showDetailsModal}>[Expand]</a>
                                 </div>

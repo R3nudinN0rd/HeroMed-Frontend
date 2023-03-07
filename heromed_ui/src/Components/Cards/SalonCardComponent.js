@@ -9,6 +9,8 @@ import LoadingHandler from '../../common/LoadingHandler'
 import CurrentPatients from './MicelaneousComponents/CurrentNumberOfPatients';
 import { BiTrash } from "react-icons/bi";
 import {AiFillEdit} from "react-icons/ai";
+import {url} from '../../common/Constants';
+
 
 function SalonCardComponent({ cardData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +21,7 @@ function SalonCardComponent({ cardData }) {
   }
 
   const deleteEntry = () =>{
-    axios.delete('http://localhost:58160/api/salon/'+cardData.id, {
+    axios.delete(url+'/api/salon/'+cardData.id, {
       headers: {
         'Content-Type': 'application/json'
       }

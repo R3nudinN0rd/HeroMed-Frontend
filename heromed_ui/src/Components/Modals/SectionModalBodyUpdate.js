@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import {url} from '../../common/Constants';
 
 
 const SectionBody = ({cardData, setIsModalOpen})  => {
@@ -17,7 +17,7 @@ const SectionBody = ({cardData, setIsModalOpen})  => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const jsonData = JSON.stringify({"title":titleValue, "description":descriptionValue, "maximumEmployeesNo":maximumEmployeesNoValue});
-    axios.put('http://localhost:58160/api/sections/'+id, jsonData, {
+    axios.put(url+'/api/sections/'+id, jsonData, {
       headers: {
         'Content-Type': 'application/json'
       }

@@ -6,6 +6,8 @@ import ModalContainer from '../../Components/Modals/ModalContainer';
 import SectionBodyUpdate from '../Modals/SectionModalBodyUpdate';
 import { BiTrash } from "react-icons/bi";
 import { AiFillEdit } from "react-icons/ai";
+import {url} from '../../common/Constants';
+import SectionRelatedDataBody from '../Modals/RelatedDataModals/SectionRelatedData';
 
 function SectionCardComponent({ cardData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,9 +17,13 @@ function SectionCardComponent({ cardData }) {
     setIsModalOpen(!isModalOpen);
     setModalBody(<SectionBodyUpdate setIsModalOpen={setIsModalOpen} cardData={cardData}></SectionBodyUpdate>);
   }
+  const showRelatedDataModal = () =>{
+    setIsModalOpen(!isModalOpen);
+    setModalBody(<SectionRelatedDataBody setIsModalOpen = {setIsModalOpen} cardData = {cardData}></SectionRelatedDataBody>);
+  }
 
   const deleteEntry = () => {
-    axios.delete('http://localhost:58160/api/sections/' + cardData.id, {
+    axios.delete(url+'/api/sections/' + cardData.id, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -64,7 +70,7 @@ function SectionCardComponent({ cardData }) {
               <span className='text-sm text-center my-2 font-bold leading-none'>{cardData.maximumEmployeesNo}</span>
             </div>
             <div className='flex flex-col pt-1'>
-              <Button size="small">Show related data</Button>
+              <Button size="small" onClick={() => showRelatedDataModal()}>Show related data</Button>
             </div>
           </div>
           <span className='border-r-[1px] my-2 border-gray-border'></span>

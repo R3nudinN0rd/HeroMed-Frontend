@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import SalonDropBox from '../Cards/MicelaneousComponents/SalonDropBox';
+import {url} from '../../common/Constants';
+
 
 
 const PatientBody = (props) => {
@@ -19,7 +21,7 @@ const PatientBody = (props) => {
 
     const handleSubmit = (event) => {
         console.log(inputValues);
-        axios.post('http://localhost:58160/api/patient', inputValues, {
+        axios.post(url+'/api/patient', inputValues, {
             headers: {
                 'ContentType': 'application/json'
             }
@@ -109,7 +111,7 @@ const PatientBody = (props) => {
                             <input className='border text-center rounded-full py-2 px-3 text-grey-darkest' name='issueDetails' id='issueDetails' onChange={handleChange} required/>
                         </div>
                         <div className='w-full flex flex-row mt-6 justify-between'>
-                        <button className='bg-blue-500 hover:bg-green-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' type="submit">
+                        <button className='bg-blue-500 hover:bg-green-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' type="submit" onClick={handleSubmit}>
                             Add Patient
                         </button>
                         <button className='bg-blue-500 hover:bg-red-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' onClick={handleClose}>

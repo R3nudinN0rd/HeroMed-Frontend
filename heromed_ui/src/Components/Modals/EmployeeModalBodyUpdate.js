@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SectionDropBox from '../Cards/MicelaneousComponents/SectionsDropBox';
 import JobDropBox from '../Cards/MicelaneousComponents/JobsDropBox'
+import {url} from '../../common/Constants';
+
 
 
 function EmployeeBodyUpdate({ cardData, setIsModalOpen }) {
@@ -27,7 +29,7 @@ function EmployeeBodyUpdate({ cardData, setIsModalOpen }) {
         setValues();
         event.preventDefault();
         console.log({ firstName, lastName, nationality, address, phoneNumber, email, salary, salaryCurrency, jobId, sectionId, seniorityYears });
-        axios.put('http://localhost:58160/api/employees/' + id, { firstName, lastName, nationality, address, phoneNumber, email, jobId, sectionId, seniorityYears }, {
+        axios.put(url+'/api/employees/' + id, { firstName, lastName, nationality, address, phoneNumber, email, jobId, sectionId, seniorityYears }, {
             headers: {
                 'ContentType': 'application/json'
             }

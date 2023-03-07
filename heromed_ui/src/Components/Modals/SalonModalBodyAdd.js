@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useAxios from '../../hooks/useAxios';
+import {url} from '../../common/Constants';
 
 
 const SalonBody = (props) => {
@@ -28,7 +29,7 @@ const SalonBody = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:58160/api/salon/', inputValues, {
+        axios.post(url+'/api/salon/', inputValues, {
             headers: {
                 'ContentType': 'application/json'
             }

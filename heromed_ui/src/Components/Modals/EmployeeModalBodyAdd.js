@@ -3,6 +3,8 @@ import axios from 'axios';
 import useAxios from '../../hooks/useAxios';
 import SectionDropBox from '../Cards/MicelaneousComponents/SectionsDropBox';
 import JobDropBox from '../Cards/MicelaneousComponents/JobsDropBox'
+import {url} from '../../common/Constants';
+
 
 const EmployeeBody = (props) => {
     const [inputValues, setInputValues] = useState({});
@@ -19,7 +21,7 @@ const EmployeeBody = (props) => {
     }
 
     const handleSubmit = (event) => {
-        axios.post('http://localhost:58160/api/employees', inputValues, {
+        axios.post(url+'/api/employees', inputValues, {
             headers: {
                 'ContentType': 'application/json'
             }
@@ -134,7 +136,7 @@ const EmployeeBody = (props) => {
                         </div>
                     </div>
                     <div className='w-full flex flex-row mt-6 justify-between'>
-                        <button className='bg-blue-500 hover:bg-green-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' type="submit">
+                        <button className='bg-blue-500 hover:bg-green-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' type="submit" onClick={handleSubmit}>
                             Add Employee
                         </button>
                         <button className='bg-blue-500 hover:bg-red-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' onClick={handleClose}>

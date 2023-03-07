@@ -11,6 +11,7 @@ import JobTitle from "./MicelaneousComponents/JobTitleForCard";
 import HeromedSectionImagePlaceholder from '../../assets/Images/HeromedSectionImagePlaceholder.jpg'
 import EmployeeBodyUpdate from '../Modals/EmployeeModalBodyUpdate';
 import SalonBodyUpdate from '../Modals/SalonModalBodyUpdate';
+import {url} from '../../common/Constants'
 
 function EmployeeCardComponent({ cardData }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +24,7 @@ function EmployeeCardComponent({ cardData }) {
         setModalBody(<EmployeeBodyUpdate setIsModalOpen = {setIsModalOpen} cardData={cardData}></EmployeeBodyUpdate>)
     }
     const deleteEntry = () => {
-        axios.delete('http://localhost:58160/api/employees/id/'+cardData.id, {
+        axios.delete(url+'/api/employees/id/'+cardData.id, {
             headers: {
                 'Content-Type': 'application/json'
             }

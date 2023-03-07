@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import {url} from '../../common/Constants';
 
 
 const SectionBody = (props)  => {  
@@ -20,7 +20,7 @@ const SectionBody = (props)  => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const jsonData = JSON.stringify(inputValues);
-    axios.post('http://localhost:58160/api/sections/', jsonData, {
+    axios.post(url+'/api/sections/', jsonData, {
       headers: {
         'Content-Type': 'application/json'
       }

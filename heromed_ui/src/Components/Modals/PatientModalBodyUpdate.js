@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SalonDropBox from '../Cards/MicelaneousComponents/SalonDropBox';
-
+import {url} from '../../common/Constants';
 
 
 const PatientBody = ({ cardData, setIsModalOpen }) => {
@@ -27,7 +27,7 @@ const PatientBody = ({ cardData, setIsModalOpen }) => {
     const handleSubmit = (event) => {
         setValues();
         event.preventDefault();
-        axios.put('http://localhost:58160/api/patient/' + id, { firstName, lastName, address, email, phoneNumber, emergencyContactName, emergencyContactPhoneNumber, salonId, issueDetails, dischargeDate }, {
+        axios.put(url+'/api/patient/' + id, { firstName, lastName, address, email, phoneNumber, emergencyContactName, emergencyContactPhoneNumber, salonId, issueDetails, dischargeDate }, {
             headers: {
                 'ContentType': 'application/json'
             }

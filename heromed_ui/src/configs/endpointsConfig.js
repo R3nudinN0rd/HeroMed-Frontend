@@ -1,4 +1,4 @@
-export const endpointApiPath = 'http://localhost:58160'
+export const endpointApiPath = 'http://localhost:5000'
 
 export const userRole = {
   1: 'user',

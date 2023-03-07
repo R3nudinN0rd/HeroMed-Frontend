@@ -5,7 +5,7 @@ const LargeTextModal = ({ text, setIsModalOpen }) => {
     }
 
     return (
-        <div className="flex flex-col w-full h-3/4  items-center bg-teal-lighter">
+        <div className="flex flex-col w-full h-3/4 items-center bg-teal-lighter">
             <div className="w-2/5 max-h-[500px] min-h-[200px] -mt-32 bg-white rounded shadow-lg p-8 overflow-x-hidden md:w-3/5 md:mx-auto">
                 <div className="flex w-full flex-col mb-4 md:justify-between overflow-y">
                     <span className="mb-2 upercase tracking-tab font-bold text-lg text-gray-darkest">Issue details</span>

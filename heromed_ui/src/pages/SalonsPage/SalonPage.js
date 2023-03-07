@@ -23,8 +23,8 @@ function SalonsPage(){
     }
 
 return (
-    <div className='linear-bg-content h-[750px] w-full relative overflow-hidden'>
-      <div className={isModalOpen?'flex flex-row justify-center hidden':'flex flex-row justify-center'}  >
+    <div className='linear-bg-content h-[750px] w-full relative overflow-hidden bg-blue-200'>
+      <div className={isModalOpen?'flex-row justify-center hidden':'flex flex-row justify-center'}  >
       <button className='bg-blue-500 hover:bg-green-500 font-bold py-2 rounded focus:outline-none focus:shadow-outline xl:hover:px-96 md:hover:px-40 xs:hover:px-20 hover:py-1 px-5 text-white duration-500' onClick={() => showModal()}>
           <span className='flex flex-row '>
           <MdAdd className='w-6 h-6 mx-1' color='#FFFFFF'></MdAdd>
