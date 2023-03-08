@@ -80,9 +80,6 @@ function SalonCardComponent({ cardData }) {
                   <span className='mt-1 text-sm font-bold text-center leading-none'>{salonAvailable}</span>
                   <span>Capacity: <CurrentPatients salonId={cardData.id}/>/{cardData.beds}</span>       
                 </div>
-                <div className='flex flex-col pt-1'>
-                  <Button size="small">Show related data</Button>
-                </div>
               </div>
               <span className='border-r-[1px] my-4 border-gray-border'></span>
               <div className='flex flex-col w-3/5 h-full px-2 pt-2'>

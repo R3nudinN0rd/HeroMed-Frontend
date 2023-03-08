@@ -9,9 +9,7 @@ import { AiFillEdit } from "react-icons/ai";
 import {url} from '../../common/Constants';
 import SectionRelatedDataBody from '../Modals/RelatedDataModals/SectionRelatedData';
 
-function SectionCardComponent({ cardData }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalBody, setModalBody] = useState();
+function SectionCardComponent({ cardData,setIsModalOpen,setModalBody,isModalOpen}) {
 
   const showModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -84,7 +82,6 @@ function SectionCardComponent({ cardData }) {
           </div>
         </div>
       </div>
-      <ModalContainer isModalOpen={isModalOpen} modalBody={modalBody} ></ModalContainer>
     </>
   )
 }

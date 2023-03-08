@@ -22,7 +22,7 @@ const showModal =()=>{
 }
 
   return (
-    <div className='linear-bg-content h-[750px] w-full relative overflow-hidden bg-slate-200'>
+    <div className='linear-bg-content rounded-tl-[30px] rounded-bl-[30px] h-[750px] w-full relative overflow-hidden bg-blue-200'>
       <div className={isModalOpen?'flex-row justify-center hidden':'flex flex-row justify-center'}  >
         <button className='bg-blue-500 hover:bg-green-500 font-bold py-2 rounded focus:outline-none focus:shadow-outline xl:hover:px-96 md:hover:px-40 xs:hover:px-20 hover:py-1 px-5 text-white duration-500' onClick={() => showModal()}>
           <span className='flex flex-row '>
@@ -39,7 +39,7 @@ const showModal =()=>{
         <>
           <div className='flex flex-wrap justify-center w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3xl gap-14'>
             {error && <ErrorHandler errorMessage={error} />}
-            {data && data.map((section) => <SectionCardComponent key={section.id} cardData={section}/>)}
+            {data && data.map((section) => <SectionCardComponent key={section.id} cardData={section} setIsModalOpen={setIsModalOpen} setModalBody={setModalBody} isModalOpen={isModalOpen}/>)}
           </div>
           
         </>

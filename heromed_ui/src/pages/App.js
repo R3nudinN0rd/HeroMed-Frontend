@@ -6,7 +6,7 @@ import MenuComponent from '../Components/Menu/MenuComponent'
 import { useCookies } from 'react-cookie';
 import RequestCode from './StarterPage/RequestCode';
 import VerifyCode from './StarterPage/VerifyCode';
-import {url} from '../common/Constants';
+import { url } from '../common/Constants';
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
   const [user, setUserValue] = useState();
 
   const [view, setView] = useState(cookies["state"] || 1)
-  const [fooder,setFooder] = useState(cookies["state"])
+  const [fooder, setFooder] = useState(cookies["state"])
 
 
 
@@ -28,7 +28,7 @@ function App() {
   }
 
   const generateCode = (event) => {
-    axios.post(url+'/api/smtp/sendemail/verification/send', { email }, {
+    axios.post(url + '/api/smtp/sendemail/verification/send', { email }, {
       headers: {
         'ContentType': 'application/json'
       }
@@ -54,29 +54,34 @@ function App() {
   }
 
   const verifyCode = () => {
-    axios.get(url+'/api/smtp/sendemail/verification', { params: { email: cookies["userEmail"], code: codeValue } }, {
+    axios.get(url + '/api/smtp/sendemail/verification', { params: { email: cookies["userEmail"], code: codeValue } }, {
       headers: {
         'ContentType': 'application/json'
       }
     })
       .then(res => {
-        console.log(res)
-        setUserValue(res.data);
-        setCookies("state", 3,{
-          path:"/",
-          expires: GetExpiresDate()
-        });
-        setView(3)
-        
-        setFooder(!fooder)
-        if (res.data) {
-          setCookies("loggedIn", true, {
+        if (res.status != 204) {
+          setUserValue(res.data);
+          setCookies("state", 3, {
             path: "/",
             expires: GetExpiresDate()
           });
-          window.location.href = "/sections"
+          setView(3)
+
+          setFooder(!fooder)
+          if (res.data) {
+            setCookies("loggedIn", true, {
+              path: "/",
+              expires: GetExpiresDate()
+            });
+            window.location.href = "/sections"
+          }
         }
-      })
+        else {
+            console.log("The verification code is wrong!")
+        }
+      }
+      )
       .catch(error => {
         console.log(error)
       })
@@ -96,9 +101,9 @@ function App() {
       {view == 2 && (<VerifyCode verifyCode={verifyCode} deleteCookies={deleteCookies} setCodeValue={setCodeValue} />)}
       {view == 3 && (
         <BrowserRouter>
-          <div className='flex justify-center w-full h-full'>
+          <div className='flex justify-center w-full h-full bg-sky-100'>
             <MenuComponent />
-            <ContentComponent/>
+            <ContentComponent />
           </div>
         </BrowserRouter>
       )
