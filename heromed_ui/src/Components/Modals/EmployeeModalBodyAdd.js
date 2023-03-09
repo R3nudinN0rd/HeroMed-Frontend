@@ -21,7 +21,8 @@ const EmployeeBody = (props) => {
     }
 
     const handleSubmit = (event) => {
-        axios.post(url+'/api/employees', inputValues, {
+        event.preventDefault();
+        axios.post(url+'/api/employees/', inputValues, {
             headers: {
                 'ContentType': 'application/json'
             }

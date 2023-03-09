@@ -8,7 +8,8 @@ import SectionPage from '../pages/SectionsPage/SectionPage'
 import SalonsPage from '../pages/SalonsPage/SalonPage'
 import EmployeesPage from '../pages/EmployeePage/EmployeePage'
 import PatientPage from '../pages/PatientPage/PatientPage'
-
+import {HiOutlineUserGroup} from 'react-icons/hi'
+import AssignementsPage from '../pages/AssignementsPage/AssignementsPage'
 function MenuMapper() {
   return [
     {
@@ -34,6 +35,12 @@ function MenuMapper() {
       'url':'/patient',
       'icon': <PatientSVG/>,
       'element': <PatientPage/>
+    },
+    {
+      'name':'Assignements',
+      'url':'/assignements',
+      'icon':<HiOutlineUserGroup size={24}/>,
+      'element':<AssignementsPage/>
     }
   ]
 }

@@ -21,7 +21,8 @@ const PatientBody = (props) => {
 
     const handleSubmit = (event) => {
         console.log(inputValues);
-        axios.post(url+'/api/patient', inputValues, {
+        event.preventDefault();
+        axios.post(url+'/api/patient/', inputValues, {
             headers: {
                 'ContentType': 'application/json'
             }

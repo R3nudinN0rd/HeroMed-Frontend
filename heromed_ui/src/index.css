@@ -21,6 +21,13 @@ code {
   background: linear-gradient(180deg, rgb(224 242 255) 0%, rgb(172 172 251 / 30%) 50.52%, rgb(224 242 255 / 96%) 100%);
 }
 
+.linear-bg-content-h{
+  background: linear-gradient(90deg, rgb(224 242 255) 0%, rgb(192 192 251 / 30%) 50.52%, rgb(224 242 255 / 96%) 100%);;
+}
+.linear-bg-content-h-hov{
+  background: linear-gradient(90deg, rgb(194 212 225) 0%, rgb(162 162 221 / 30%) 50.52%, rgb(194 212 225 / 96%) 100%);;
+}
+
 .dark-to-transparent-card {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.375) 0%, rgba(0, 0, 0, 0) 0.01%, rgba(0, 0, 0, 0.6) 37.5%);
 }
