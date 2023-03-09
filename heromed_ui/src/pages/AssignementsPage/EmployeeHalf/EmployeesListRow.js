@@ -1,11 +1,14 @@
 import React from "react";
 import JobTitle from "../../../Components/Cards/MicelaneousComponents/JobTitleForCard";
 import SectionTitle from "../../../Components/Cards/MicelaneousComponents/SectionTitleForCard";
+import EmployeeRelationsModal from "../../../Components/Modals/RelationsModals/EmployeeRelationsModal";
 
-function EmployeesListRow({ rowData }, isModalOpen, setEmployeeId) {
+function EmployeesListRow({ rowData }, setIsModalOpen, isModalOpen, setModalBody) {
 
+   
     const showModal = () => {
-        setEmployeeId(rowData.Id);
+        setIsModalOpen(!isModalOpen);
+        setModalBody(<EmployeeRelationsModal setIsModalOpen={setIsModalOpen} employeeId = {rowData.id}></EmployeeRelationsModal>)
     }
 
     return (

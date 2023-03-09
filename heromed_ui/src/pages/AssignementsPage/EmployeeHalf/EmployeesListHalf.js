@@ -15,7 +15,7 @@ function EmployeesListHalf({setEmployeeId}) {
                 <LoadingHandler />
             ) : (
                 <>
-                    <div className='flex flex-wrap justify-center w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3x1 gap-3'>
+                    <div className='flex flex-col items-center justify-center w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3x1 gap-3'>
                         {error && <ErrorHandler errorMessage={error} />}
                         {data && data.map((employee) => <EmployeesListRow key={employee.id} rowData={employee} setEmployeeId={setEmployeeId}/>)}
                     </div>           

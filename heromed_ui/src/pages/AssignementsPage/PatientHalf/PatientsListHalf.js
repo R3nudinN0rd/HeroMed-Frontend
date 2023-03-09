@@ -23,7 +23,7 @@ function PatientsListHalf(){
                 <LoadingHandler/>
             ):(
                 <>
-                    <div className='flex flex-wrap justify-center w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3x1 gap-3'>
+                    <div className='flex flex-col items-center justify-center w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3x1 gap-3'>
                         {error && <ErrorHandler errorMessage={error}/>}
                         {data && data.map((patient) => <PatientListRow key={patient.id} rowData={patient} setIsModalOpen={setIsModalOpen} isModalOpen = {isModalOpen} setModalBody={setModalBody}/>)}
                     </div>

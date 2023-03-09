@@ -7,11 +7,11 @@ import { url } from '../../../../common/Constants';
 import LoadingHandler from '../../../../common/LoadingHandler';
 import ErrorHandler from '../../../../common/ErrorHandler';
 
-function PatientUnassignedRelationRow({ relation }) {
+function EmployeeAssignedRelationRow({ relation }) {
 
     const { data, loading, error } = useAxios({
         method: 'get',
-        url: '/api/employees/' + relation.employeeId
+        url: '/api/patients/' + relation.patientId
     })
 
     const handleUncheck = (event) => {
@@ -49,7 +49,7 @@ function PatientUnassignedRelationRow({ relation }) {
 
     }
 
-    const [rel, setRel] = useState(false);
+    const [rel, setRel] = useState(true);
 
     return (
         <div className='flex flex-col w-1/2 h-[50px]'>
@@ -59,19 +59,15 @@ function PatientUnassignedRelationRow({ relation }) {
                 <>
                     <div className='flex flex-row'>
                         <div className='flex flex-col h-full w-1/7 items-center justify-center'>
-                            <input type="checkbox" defaultChecked={false} onClick={handleUncheck}></input>
+                            <input type="checkbox" defaultChecked={true} onClick={handleUncheck}></input>
                         </div>
                         <div className='flex flex-col h-full w-1/3 items-center'>
-                            <span className='text-sm text-bold text-center font-medium opacity-50'>Employee name</span>
+                            <span className='text-sm text-bold text-center font-medium opacity-50'>Patient name</span>
                             <span className='text-sm text-bold text-center font-medium'>{data.firstName} {data.lastName}</span>
                         </div>
                         <div className='flex flex-col h-full w-1/3 items-center'>
-                            <span className='text-sm text-bold text-center font-medium opacity-50'>Job title</span>
-                            <span className='text-sm text-bold text-center font-medium'><JobTitle jobId={data.jobId} /></span>
                         </div>
                         <div className='flex flex-col h-full w-1/3 items-center'>
-                            <span className='text-sm text-bold text-center font-medium opacity-50'>Job title</span>
-                            <span className='text-sm text-bold text-center font-medium'><SectionTitle sectionId={data.sectionId} /></span>
                         </div>    
                     </div>
                     <span className='border-double border-b-[1px] border-gray-500 w-full scroll mr-3 opacity-30'></span>
@@ -81,4 +77,4 @@ function PatientUnassignedRelationRow({ relation }) {
         </div>
     )
 }
-export default PatientUnassignedRelationRow
+export default EmployeeAssignedRelationRow
