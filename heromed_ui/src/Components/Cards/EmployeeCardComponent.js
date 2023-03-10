@@ -37,6 +37,21 @@ function EmployeeCardComponent({ cardData }) {
                 console.log(error);
             })
     }
+
+    const deleteRelations = () => {
+        axios.delete(url+'/api/relation/employee/id' + cardData.id,{
+            headers:{
+                'ContentType': 'application/json'
+            }
+        })
+        .then(response => {
+            console.log(response);
+            deleteEntry()
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
     
     return (
         
@@ -49,7 +64,7 @@ function EmployeeCardComponent({ cardData }) {
                         </Button>
                     </div>
                     <div className="flex z-20 h-[40px] w-[40px]">
-                        <Button className="w-full h-full" size="medium" onClick={() => deleteEntry()}>
+                        <Button className="w-full h-full" size="medium" onClick={() => deleteRelations()}>
                             <BiTrash className="w-[20px] h-[20px]" color="#931A00"></BiTrash>
                         </Button>
                     </div>

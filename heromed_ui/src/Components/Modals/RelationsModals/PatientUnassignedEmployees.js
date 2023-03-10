@@ -2,7 +2,7 @@ import React from 'react';
 import useAxios from '../../../hooks/useAxios';
 import LoadingHandler from '../../../common/LoadingHandler';
 import PatientUnassignedRelationRow from './MicelaneousComponents/PatientUnassignedRelationRow';
-
+import EmptyArray from '../RelatedDataModals/MicelaneousComponents/EmptyArray';
 function PatientUnassignedEmployees({patientId}){
 
     const {data, loading, error} = useAxios({
@@ -14,7 +14,8 @@ function PatientUnassignedEmployees({patientId}){
         {loading?(
             <LoadingHandler/>
         ):(
-        <div className='flex flex-col w-full h-full overflow-y-auto'>
+        <div className='flex flex-col w-full h-fit overflow-auto'>
+            {error &&(<EmptyArray/>)}
             {data && data.map((relation) => <PatientUnassignedRelationRow key={relation.employeeId} relation={relation}/>)}
         </div>
         )}

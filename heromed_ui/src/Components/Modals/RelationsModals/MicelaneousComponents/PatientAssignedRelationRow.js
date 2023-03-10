@@ -52,12 +52,12 @@ function PatientAssignedRelationRow({ relation }) {
     const [rel, setRel] = useState(true);
 
     return (
-        <div className='flex flex-col w-1/2 h-[50px]'>
+        <div className='flex flex-col w-full h-[50px]'>
             {loading ? (
                 <LoadingHandler />
             ) : (
                 <>
-                    <div className='flex flex-row'>
+                    <div className='flex flex-row w-full'>
                         <div className='flex flex-col h-full w-1/7 items-center justify-center'>
                             <input type="checkbox" defaultChecked={true} onClick={handleUncheck}></input>
                         </div>
@@ -74,7 +74,7 @@ function PatientAssignedRelationRow({ relation }) {
                             <span className='text-sm text-bold text-center font-medium'><SectionTitle sectionId={data.sectionId} /></span>
                         </div>    
                     </div>
-                    <span className='border-double border-b-[1px] border-gray-500 w-full scroll mr-3 opacity-30'></span>
+                    <span className='border-double border-b-[1px] border-gray-500 w-full scroll mr-3 my-3 opacity-30'></span>
 
                 </>
             )}

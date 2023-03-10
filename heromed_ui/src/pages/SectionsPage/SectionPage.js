@@ -6,6 +6,7 @@ import useAxios from '../../hooks/useAxios'
 import {MdAdd} from 'react-icons/md';
 import ModalContainer from '../../Components/Modals/ModalContainer'
 import SectionBody from '../../Components/Modals/SectionModalBodyAdd'
+import EmptyArray from '../../Components/Modals/RelatedDataModals/MicelaneousComponents/EmptyArray'
 
 function SectionsPage() { 
   const { data, loading, error } = useAxios({
@@ -38,7 +39,7 @@ const showModal =()=>{
       ) : (
         <>
           <div className='flex flex-wrap justify-center w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3xl gap-14'>
-            {error && <ErrorHandler errorMessage={error} />}
+            {error && (<EmptyArray/>)}
             {data && data.map((section) => <SectionCardComponent key={section.id} cardData={section} setIsModalOpen={setIsModalOpen} setModalBody={setModalBody} isModalOpen={isModalOpen}/>)}
           </div>
           

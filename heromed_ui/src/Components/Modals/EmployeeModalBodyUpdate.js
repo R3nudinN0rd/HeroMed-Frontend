@@ -28,7 +28,6 @@ function EmployeeBodyUpdate({ cardData, setIsModalOpen }) {
     const handleSubmit = (event) => {
         setValues();
         event.preventDefault();
-        console.log({ firstName, lastName, nationality, address, phoneNumber, email, salary, salaryCurrency, jobId, sectionId, seniorityYears });
         axios.put(url+'/api/employees/' + id, { firstName, lastName, nationality, address, phoneNumber, email, jobId, sectionId, seniorityYears }, {
             headers: {
                 'ContentType': 'application/json'

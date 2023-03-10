@@ -52,7 +52,7 @@ function PatientUnassignedRelationRow({ relation }) {
     const [rel, setRel] = useState(false);
 
     return (
-        <div className='flex flex-col w-1/2 h-[50px]'>
+        <div className='flex flex-col w-full h-[50px]'>
             {loading ? (
                 <LoadingHandler />
             ) : (

@@ -13,7 +13,7 @@ import LargeTextModal from '../Modals/LargeTextModal';
 import { ToastContainer } from 'react-toastify';
 import {url} from '../../common/Constants';
 
-function PatientCardComponent({ cardData }) {
+function PatientCardComponent({ cardData, showEmailModal}) {
     const [isModalOpenText, setIsModalOpenText] = useState(false);
     const [isModalOpenUpdate, setIsModalOpenUpdate] = useState(false)
     const [modalBodyText, setModalBodyText] = useState();
@@ -47,6 +47,21 @@ function PatientCardComponent({ cardData }) {
             });
     }
 
+    const deleteRelations =() =>{
+        axios.delete(url+'/api/relation/patient/id/' +cardData.id,{
+            headers:{
+                'ContentType': 'application/json'
+            }
+        })
+        .then(response=>{
+            console.log(response);
+            deleteEntry();
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
     
     useEffect(() => {
         const enrDate = new Date(cardData.enrolledDate);
@@ -69,7 +84,7 @@ function PatientCardComponent({ cardData }) {
                         </Button>
                     </div>
                     <div className='flex z-20 h-[40px] w-[40px]'>
-                        <Button className='w-full h-full' size='medium' onClick={() => deleteEntry()}>
+                        <Button className='w-full h-full' size='medium' onClick={() => deleteRelations()}>
                             <BiTrash className='w-[20px] h-[20px]' color='#931A00'></BiTrash>
                         </Button>
                     </div>
@@ -118,7 +133,7 @@ function PatientCardComponent({ cardData }) {
                                 <span className='text-sm text-bold text-center font-medium opacity-50'>Email</span>
                                 <div className='flex flex-row justify-center'>  
                                     <span className='text-center px-2'>{cardData.email}</span>
-                                    <button className='bg-blue-500 text-white font-bold rounded-sm w-[100px]'>Send email</button>
+                                    <button className='bg-blue-500 text-white font-bold rounded-sm w-[100px]' onClick={showEmailModal(cardData.email)}>Send email</button>
                                 </div>
                             </div>
                             <div className='flex flex-col mt-1'>

@@ -6,7 +6,7 @@ import ModalContainer from '../../Components/Modals/ModalContainer';
 import { MdAdd } from 'react-icons/md';
 import EmployeeBody from '../../Components/Modals/EmployeeModalBodyAdd';
 import EmployeeCardComponent from '../../Components/Cards/EmployeeCardComponent';
-
+import EmptyArray from '../../Components/Modals/RelatedDataModals/MicelaneousComponents/EmptyArray';
 function EmployeePage() {
     const { data, loading, error } = useAxios({
         method: 'get',
@@ -37,7 +37,7 @@ function EmployeePage() {
             ) : (
                 <>
                     <div className='flex flex-wrap justify-center w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3x1 gap-14'>
-                        {error && <ErrorHandler errorMessage={error}/>}
+                        {error && (<EmptyArray/>)}
                         {data && data.map((employee) => <EmployeeCardComponent key={employee.id} cardData={employee}/>)}
                     </div>
                 </>

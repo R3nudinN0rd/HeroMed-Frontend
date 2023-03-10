@@ -3,7 +3,7 @@ import JobTitle from "../../../Components/Cards/MicelaneousComponents/JobTitleFo
 import SectionTitle from "../../../Components/Cards/MicelaneousComponents/SectionTitleForCard";
 import EmployeeRelationsModal from "../../../Components/Modals/RelationsModals/EmployeeRelationsModal";
 
-function EmployeesListRow({ rowData }, setIsModalOpen, isModalOpen, setModalBody) {
+function EmployeesListRow({ rowData , setIsModalOpen, isModalOpen, setModalBody}) {
 
    
     const showModal = () => {
@@ -21,11 +21,11 @@ function EmployeesListRow({ rowData }, setIsModalOpen, isModalOpen, setModalBody
                     <span className="text-sm text-bold font-medium text-center">{rowData.firstName} {rowData.lastName}</span>
                 </div>
                 <div className="flex flex-col w-1/3 h-full">
-                    <span className="text-sm text-bold font-medium text-center opcaity-50">Job title</span>
+                    <span className="text-sm text-bold font-medium text-center opcaity-50">Enrolled date</span>
                     <span className="text-sm text-bold font-medium text-center"><JobTitle jobId={rowData.jobId} /></span>
                 </div>
                 <div className="flex flex-col w-1/3 h-full">
-                    <span className="text-sm text-bold font-medium text-center opacity-50">Section</span>
+                    <span className="text-sm text-bold font-medium text-center opacity-50">Discharge date</span>
                     <span className="text-sm text-bold font-medium text-center"><SectionTitle sectionId={rowData.sectionId} /></span>
                 </div>
             </div>

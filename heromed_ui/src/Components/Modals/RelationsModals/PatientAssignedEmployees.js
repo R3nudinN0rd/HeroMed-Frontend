@@ -1,9 +1,10 @@
 import React from 'react';
 import PatientAssignedRelationRow from './MicelaneousComponents/PatientAssignedRelationRow';
-
-function PatientAssignedEmployees({relations}){
+import EmptyArray from '../RelatedDataModals/MicelaneousComponents/EmptyArray';
+function PatientAssignedEmployees({relations, error}){
     return(
-        <div className='flex flex-col w-full h-full overflow-y-auto'>
+        <div className='flex flex-col w-full h-fit overflow-auto'>
+            {error &&(<EmptyArray/>)}
             {relations && relations.map((relation) => <PatientAssignedRelationRow key={relation.employeeId} relation={relation}/>)}
         </div>
     )

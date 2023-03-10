@@ -3,7 +3,7 @@ import ErrorHandler from '../../common/ErrorHandler'
 import LoadingHandler from '../../common/LoadingHandler'
 import useAxios from '../../hooks/useAxios'
 import PatientCardComponent from '../../Components/Cards/ServicesCardComponents/PatientCardComponent'
-
+import EmptyArray from '../../Components/Modals/RelatedDataModals/MicelaneousComponents/EmptyArray'
 function EnrolledPage() {
     const { data, loading, error } = useAxios({
         method: 'get',
@@ -19,7 +19,7 @@ function EnrolledPage() {
                     ) : (
                         <>
                             <div className='flex flex-col justify-start w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3x1 gap-4'>
-                                {error && <ErrorHandler errorMessage={error} />}
+                                {error && (<EmptyArray/>)}
                                 {data && data.map((patient) => <PatientCardComponent key={patient.id} cardData={patient} />)}
                             </div>
                         </>

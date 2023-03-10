@@ -7,13 +7,12 @@ import { url } from '../../../../common/Constants';
 import LoadingHandler from '../../../../common/LoadingHandler';
 import ErrorHandler from '../../../../common/ErrorHandler';
 
-function PatientUnassignedRelationRow({ relation }) {
+function EmployeeUnassignedRelationRow({ relation }) {
 
     const { data, loading, error } = useAxios({
         method: 'get',
-        url: '/api/patient/' + relation.patientId
+        url: '/api/patient/id/' + relation.patientId
     })
-
     const handleUncheck = (event) => {
         setRel(!rel)
         if (rel == true) {
@@ -34,6 +33,7 @@ function PatientUnassignedRelationRow({ relation }) {
                 })
         }
         else {
+            console.log(relation)
             axios.post(url + '/api/relation', relation, {
                 headers: {
                     'ContentType': 'applications/json'
@@ -51,8 +51,13 @@ function PatientUnassignedRelationRow({ relation }) {
 
     const [rel, setRel] = useState(false);
 
+    const DateConverter = (datetime) => {
+        const date = new Date(datetime)
+        return (`${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`)
+    }
+
     return (
-        <div className='flex flex-col w-1/2 h-[50px]'>
+        <div className='flex flex-col w-full h-[50px]'>
             {loading ? (
                 <LoadingHandler />
             ) : (
@@ -66,8 +71,12 @@ function PatientUnassignedRelationRow({ relation }) {
                             <span className='text-sm text-bold text-center font-medium'>{data.firstName} {data.lastName}</span>
                         </div>
                         <div className='flex flex-col h-full w-1/3 items-center'>
+                            <span className='text-sm text-bold text-center font-medium opacity-50'>Enrolled date</span>
+                            <span className='text-sm text-bold font-medium text-center'>{DateConverter(data.enrolledDate)}</span>
                         </div>
                         <div className='flex flex-col h-full w-1/3 items-center'>
+                            <span className='text-sm text-bold text-center font-medium opacity-50'>Discharge date</span>
+                            <span className='text-sm text-bold font-medium text-center'>{DateConverter(data.dischargeDate)}</span>
                         </div>    
                     </div>
                     <span className='border-double border-b-[1px] border-gray-500 w-full scroll mr-3 opacity-30'></span>
@@ -77,4 +86,4 @@ function PatientUnassignedRelationRow({ relation }) {
         </div>
     )
 }
-export default PatientUnassignedRelationRow
+export default EmployeeUnassignedRelationRow

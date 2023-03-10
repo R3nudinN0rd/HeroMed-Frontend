@@ -6,6 +6,8 @@ import ModalContainer from '../../Components/Modals/ModalContainer';
 import { MdAdd } from 'react-icons/md';
 import PatientBody from '../../Components/Modals/PatientModalBodyAdd';
 import PatientCardComponent from '../../Components/Cards/PatientCardComponent';
+import EmptyArray from '../../Components/Modals/RelatedDataModals/MicelaneousComponents/EmptyArray';
+import CustomEmailModal from '../../Components/Modals/CustomEmailModal';
 
 function PatientPage() {
     const { data, loading, error } = useAxios({
@@ -16,9 +18,17 @@ function PatientPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalBody, setModalBody] = useState();
 
+    const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+    const [modalEmailBody, setModalEmailBody] = useState();
+
     const showModal = () => {
         setIsModalOpen(!isModalOpen);
         setModalBody(<PatientBody setIsModalOpen = {setIsModalOpen}></PatientBody>)
+    }
+
+    const showEmailModal = (patientData) => {
+        setIsEmailModalOpen(!isEmailModalOpen);
+        setModalEmailBody(<CustomEmailModal patientData={patientData} setIsModalOpen={setIsEmailModalOpen}></CustomEmailModal>)
     }
 
     return (
@@ -32,13 +42,14 @@ function PatientPage() {
                 </button>
             </div>
             {<ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer>}
+            {<ModalContainer isModalOpen={isEmailModalOpen} modalBody = {modalEmailBody}></ModalContainer>}
             {loading ? (
                 <LoadingHandler />
             ) : (
                 <>
                     <div className='flex flex-wrap justify-center w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3x1 gap-14'>
-                        {error && <ErrorHandler errorMessage={error}/>}
-                        {data && data.map((patient) => <PatientCardComponent key={patient.id} cardData={patient}/>)}
+                        {error && (<EmptyArray/>)}
+                        {data && data.map((patient) => <PatientCardComponent key={patient.id} cardData={patient} showEmailModal={showEmailModal}/>)}
                     </div>
                 </>
             )}

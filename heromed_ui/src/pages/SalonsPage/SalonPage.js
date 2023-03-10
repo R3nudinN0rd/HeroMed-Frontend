@@ -6,7 +6,7 @@ import ModalContainer from '../../Components/Modals/ModalContainer'
 import SalonBody from '../../Components/Modals/SalonModalBodyAdd'
 import {MdAdd} from 'react-icons/md';
 import SalonCardComponent from '../../Components/Cards/SalonCardComponent'
-
+import EmptyArray from '../../Components/Modals/RelatedDataModals/MicelaneousComponents/EmptyArray'
 function SalonsPage(){
     const{data, loading, error} = useAxios({
         method:'get',
@@ -33,13 +33,12 @@ return (
           </button>
       </div>
         {<ModalContainer isModalOpen={isModalOpen} modalBody={modalBody}></ModalContainer>}
-        {/* <SalonBody setIsModalOpen ={isModalAddOpen}></SalonBody> */}
       {loading ? (
         <LoadingHandler />
       ) : (
         <>
         <div className='flex flex-wrap justify-center w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3xl gap-14'>
-            {error && <ErrorHandler errorMessage={error} />}
+            {error && (<EmptyArray/>)}
             {data && data.map((salon) => <SalonCardComponent key={salon.id} cardData={salon}/>)}
           </div>
         </>

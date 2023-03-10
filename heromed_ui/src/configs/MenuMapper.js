@@ -9,7 +9,9 @@ import SalonsPage from '../pages/SalonsPage/SalonPage'
 import EmployeesPage from '../pages/EmployeePage/EmployeePage'
 import PatientPage from '../pages/PatientPage/PatientPage'
 import {HiOutlineUserGroup} from 'react-icons/hi'
+import {MdOutlineAdminPanelSettings} from 'react-icons/md'
 import AssignementsPage from '../pages/AssignementsPage/AssignementsPage'
+import AdminPage from '../pages/AdminPage/AdminPage'
 function MenuMapper() {
   return [
     {
@@ -41,6 +43,12 @@ function MenuMapper() {
       'url':'/assignements',
       'icon':<HiOutlineUserGroup size={24}/>,
       'element':<AssignementsPage/>
+    },
+    {
+      'name':'Admin panel',
+      'url': '/admin',
+      'icon':<MdOutlineAdminPanelSettings size={24}/>,
+      'element':<AdminPage/>
     }
   ]
 }
