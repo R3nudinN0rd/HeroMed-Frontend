@@ -7,7 +7,11 @@ import EmployeeSVG from '../shared/IconComponents/employeeSVG'
 import SectionPage from '../pages/SectionsPage/SectionPage'
 import SalonsPage from '../pages/SalonsPage/SalonPage'
 import EmployeesPage from '../pages/EmployeePage/EmployeePage'
-
+import PatientPage from '../pages/PatientPage/PatientPage'
+import {HiOutlineUserGroup} from 'react-icons/hi'
+import {MdOutlineAdminPanelSettings} from 'react-icons/md'
+import AssignementsPage from '../pages/AssignementsPage/AssignementsPage'
+import AdminPage from '../pages/AdminPage/AdminPage'
 function MenuMapper() {
   return [
     {
@@ -32,7 +36,19 @@ function MenuMapper() {
       'name':'Patients',
       'url':'/patient',
       'icon': <PatientSVG/>,
-      'element': <EmployeesPage/>
+      'element': <PatientPage/>
+    },
+    {
+      'name':'Assignements',
+      'url':'/assignements',
+      'icon':<HiOutlineUserGroup size={24}/>,
+      'element':<AssignementsPage/>
+    },
+    {
+      'name':'Admin',
+      'url': '/admin',
+      'icon':<MdOutlineAdminPanelSettings size={24}/>,
+      'element':<AdminPage/>
     }
   ]
 }

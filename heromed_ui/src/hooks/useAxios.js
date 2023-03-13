@@ -12,7 +12,7 @@ import { endpointApiPath } from '../configs/endpointsConfig'
  *
  * @return {json} json data
  */
-const useAxios = ({ url, method, body = null, headers = null }) => {
+const useAxios = ({ url, method, body = null, headers = null, }) => {
   const [data, setData] = useState(null)
   const [response, setResponse] = useState(null)
   const [error, setError] = useState('')
@@ -38,5 +38,4 @@ const useAxios = ({ url, method, body = null, headers = null }) => {
 
   return { data, response, error, loading }
 }
-
 export default useAxios

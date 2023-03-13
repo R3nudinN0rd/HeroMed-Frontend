@@ -5,16 +5,15 @@ import LoadingHandler from '../../../common/LoadingHandler';
 function CurrentPatients({salonId}){
     const{data, loading} = useAxios({
         method:'get',
-        url:`/api/patient/patientSalon/${salonId}`,
+        url:'/api/patient/patientSalon/'+salonId,
     })
-
     return (
         <>
             {loading?(
                 <LoadingHandler/>
             ):(
                 <>
-                    <span className='text-center'>{data.count}</span>
+                    <span className='text-center'>{data.length}</span>
                 </>
             )}
         </>

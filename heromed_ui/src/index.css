@@ -18,7 +18,14 @@ code {
 }
 
 .linear-bg-content {
-  background: linear-gradient(180deg, rgba(241, 241, 241, 0.7) 0%, rgba(255, 255, 255, 0) 50.52%, rgba(241, 241, 241, 0.7) 100%);
+  background: linear-gradient(180deg, rgb(224 242 255) 0%, rgb(172 172 251 / 30%) 50.52%, rgb(224 242 255 / 96%) 100%);
+}
+
+.linear-bg-content-h{
+  background: linear-gradient(90deg, rgb(224 242 255) 0%, rgb(192 192 251 / 30%) 50.52%, rgb(224 242 255 / 96%) 100%);;
+}
+.linear-bg-content-h-hov{
+  background: linear-gradient(90deg, rgb(194 212 225) 0%, rgb(162 162 221 / 30%) 50.52%, rgb(194 212 225 / 96%) 100%);;
 }
 
 .dark-to-transparent-card {

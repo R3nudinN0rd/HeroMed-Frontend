@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useAxios from '../../hooks/useAxios';
+import {url} from '../../common/Constants';
 
 
 const SalonBody = ({cardData, setIsModalOpen}) => {
@@ -26,10 +27,9 @@ const SalonBody = ({cardData, setIsModalOpen}) => {
     
 
     const handleSubmit = (event) => {
-        console.log(inputValues)
         floor=floorValue; salonNumber=salonNumberValue; beds=parseInt(bedsValue);sectionId=sectionIdValue; 
         event.preventDefault();
-        axios.put('http://localhost:58160/api/salon/'+id, {floor, salonNumber, beds, available, sectionId}, {
+        axios.put(url+'/api/salon/'+id, {floor, salonNumber, beds, available, sectionId}, {
             headers: {
                 'ContentType': 'application/json'
             }
