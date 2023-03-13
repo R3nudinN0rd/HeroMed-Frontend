@@ -30,6 +30,7 @@ function PatientPage() {
         setIsEmailModalOpen(!isEmailModalOpen);
         setModalEmailBody(<CustomEmailModal patientData={patientData} setIsModalOpen={setIsEmailModalOpen}></CustomEmailModal>)
     }
+    
 
     return (
         <div className='linear-bg-content h-[750px] w-full relative overflow-hidden bg-blue-200'>

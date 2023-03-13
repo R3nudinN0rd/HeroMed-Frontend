@@ -7,6 +7,8 @@ import { useCookies } from 'react-cookie';
 import RequestCode from './StarterPage/RequestCode';
 import VerifyCode from './StarterPage/VerifyCode';
 import { url } from '../common/Constants';
+import useAxios from '../hooks/useAxios';
+import LoadingHandler from '../common/LoadingHandler';
 
 function App() {
 
@@ -18,8 +20,6 @@ function App() {
 
   const [view, setView] = useState(cookies["state"] || 1)
   const [fooder, setFooder] = useState(cookies["state"])
-
-
 
   function GetExpiresDate() {
     var date = new Date();
@@ -87,13 +87,20 @@ function App() {
       })
   }
 
+
   const deleteCookies = () => {
     removeCookie("emailSent");
     removeCookie("loggedIn");
     removeCookie("userEmail");
     removeCookie("state");
+    removeCookie("admin");
     window.location.reload(false);
   }
+
+  const {data, loading} = useAxios({
+    method:'get',
+    url:'/api/users/email/'+cookies["userEmail"]
+  })
 
   return (
     <>
@@ -102,8 +109,14 @@ function App() {
       {view == 3 && (
         <BrowserRouter>
           <div className='flex justify-center w-full h-full bg-sky-100'>
-            <MenuComponent />
+            {loading?(
+              <LoadingHandler/>
+            ):(
+              <>
+            <MenuComponent userData = {data}/>
             <ContentComponent />
+            </>
+            )}
           </div>
         </BrowserRouter>
       )

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import axios from 'axios';
 import ModalContainer from "../Modals/ModalContainer";
-import LoadingHandler from "../../common/LoadingHandler";
+import { useCookies } from "react-cookie";
 import { BiTrash } from 'react-icons/bi';
 import { AiFillEdit } from 'react-icons/ai';
 import Button from '@mui/material/Button';
@@ -16,12 +16,21 @@ import {url} from '../../common/Constants'
 function EmployeeCardComponent({ cardData }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalBody, setModalBody] = useState();
+    const [cookies, setCookies, removeCookie] = useCookies(["verification"]);
 
     const employmentDate = new Date(cardData.employmentDate);
     const dateString = employmentDate.getDate() + "-" + (employmentDate.getMonth()+1) + "-" + employmentDate.getFullYear();
     const showModal = () => {
         setIsModalOpen(!isModalOpen);
         setModalBody(<EmployeeBodyUpdate setIsModalOpen = {setIsModalOpen} cardData={cardData}></EmployeeBodyUpdate>)
+    }
+
+    const deleteCookies = () => {
+        removeCookie("emailSent");
+        removeCookie("loggedIn");
+        removeCookie("userEmail");
+        removeCookie("state");
+        removeCookie("admin");
     }
     const deleteEntry = () => {
         axios.delete(url+'/api/employees/id/'+cardData.id, {
@@ -39,7 +48,10 @@ function EmployeeCardComponent({ cardData }) {
     }
 
     const deleteRelations = () => {
-        axios.delete(url+'/api/relation/employee/id' + cardData.id,{
+        if(cardData.email == cookies["userEmail"]){
+            deleteCookies();
+        }
+        axios.delete(url+'/api/relation/employee/id/' + cardData.id,{
             headers:{
                 'ContentType': 'application/json'
             }

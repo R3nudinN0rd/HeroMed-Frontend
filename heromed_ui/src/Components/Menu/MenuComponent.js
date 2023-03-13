@@ -6,7 +6,7 @@ import MenuMapper from '../../configs/MenuMapper'
 import { userRoleForDataBase } from '../../configs/endpointsConfig'
 import ServicesMenuMapper from '../../configs/ServicesMenuMapper'
 
-function MenuComponent() {
+function MenuComponent({userData}) {
   const MenuJson = MenuMapper()
   const ServicesMenu = ServicesMenuMapper()
   return (
@@ -18,7 +18,7 @@ function MenuComponent() {
             <h2 className='text-3xl font-semibold text-center'>Menu</h2>
             <div className='flex flex-col justify-start h-full border-[1px] border-slate-300 rounded-xl bg-white mt-3'>
               {MenuJson.map((item, key) => {
-                if (item.name == 'Admin' && userRoleForDataBase == 'user') return
+                if (item.name == 'Admin' && !userData.admin) return
                 return (
                   <NavLink to={item.url} key={key}>
                     {({ isActive }) => (

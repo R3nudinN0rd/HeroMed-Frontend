@@ -10,7 +10,6 @@ import { BiTrash } from 'react-icons/bi';
 import { AiFillEdit } from 'react-icons/ai';
 import SalonNumber from "./MicelaneousComponents/SalonNumberForCard";
 import LargeTextModal from '../Modals/LargeTextModal';
-import { ToastContainer } from 'react-toastify';
 import {url} from '../../common/Constants';
 
 function PatientCardComponent({ cardData, showEmailModal}) {
@@ -27,10 +26,6 @@ function PatientCardComponent({ cardData, showEmailModal}) {
         setIsModalOpenText(!isModalOpenText);
         setModalBodyText(<LargeTextModal setIsModalOpen={setIsModalOpenText} text={cardData.issueDetails}></LargeTextModal>)
     }
-
-    const [enrolledDateValue, setEnrolledDateValue] = useState(cardData.enrolledDate);
-    const [dischargeDateValue, setDischargeDateValue] = useState(cardData.dischargeDate);
-    const[birthdateValue, setBirthdateValue] = useState(cardData.birthDate);
 
     const deleteEntry = () => {
         axios.delete(url+'/api/patient/' + cardData.id, {
@@ -62,21 +57,15 @@ function PatientCardComponent({ cardData, showEmailModal}) {
         });
     }
 
-    
-    useEffect(() => {
-        const enrDate = new Date(cardData.enrolledDate);
-        setEnrolledDateValue(`${enrDate.getDate()}-${enrDate.getMonth()+1}-${enrDate.getFullYear()}`);
-        const dcDate = new Date(cardData.dischargeDate);
-        setDischargeDateValue(`${dcDate.getDate()}-${dcDate.getMonth()+1}-${dcDate.getFullYear()}`);
-        const bDate = new Date(cardData.birthDate);
-        setBirthdateValue(`${bDate.getDate()}-${bDate.getMonth()+1}-${bDate.getFullYear()}`);
-    })
+    const ChangeDateFormat = (date)=>{
+        const formattedDate = new Date(date);
+        return (`${formattedDate.getDate()}-${formattedDate.getMonth()+1}-${formattedDate.getFullYear()}`)
+    }
 
 
     return (
         <>
             <div className='event-card-container min-w-[430px] min-h-[450px] max-w-[430px] max-h-[450px] rounded-[10px]'>
-                <ToastContainer/>
                 <div className='relative flex h-20 w-[40px] space-x-4 float-right mr-20 z-40'>
                     <div className='flex z-20 h-[40px] w-[40px]'>
                         <Button className='w-full h-full' size="medium" onClick={() => showModal()}>
@@ -108,15 +97,15 @@ function PatientCardComponent({ cardData, showEmailModal}) {
                         </div>
                         <div className='flex flex-col'>
                             <span className='text-sm text-bold text-center font-medium opacity-50'>Birthdate</span>
-                            <span className='text-center'>{birthdateValue}</span>
+                            <span className='text-center'>{ChangeDateFormat(cardData.birthDate)}</span>
                         </div>
                         <div className='flex flex-col'>
                             <span className='text-sm text-bold text-center font-medium opacity-50'>Enrolled date</span>
-                            <span className='text-center'>{enrolledDateValue}</span>
+                            <span className='text-center'>{ChangeDateFormat(cardData.enrolledDate)}</span>
                         </div>
                         <div className='flex flex-col'>
                             <span className='text-sm text-bold text-center font-medium opacity-50'>Discharge date</span>
-                            <span className='text-center'>{dischargeDateValue}</span>
+                            <span className='text-center'>{ChangeDateFormat(cardData.dischargeDate)}</span>
                         </div>
                     </div>
                     <span className='border-r-[1px] my-4 border-gray-border h-full'></span>
@@ -129,11 +118,11 @@ function PatientCardComponent({ cardData, showEmailModal}) {
                                 <span className='text-sm text-bold text-center font-medium opacity-50 px-3'>Phone number</span>
                                 <span className='text-center'>{cardData.phoneNumber}</span>
                             </div>
-                            <div className='flex flex-col mt-1'>
-                                <span className='text-sm text-bold text-center font-medium opacity-50'>Email</span>
-                                <div className='flex flex-row justify-center'>  
+                            <div className='flex flex-col mt-1 items-center'>
+                                <span className='text-sm text-bold text-center font-medium opacity-50 align-center'>Email</span>
+                                <div className='flex flex-row justify-center w-full'>  
                                     <span className='text-center px-2'>{cardData.email}</span>
-                                    <button className='bg-blue-500 text-white font-bold rounded-sm w-[100px]' onClick={showEmailModal(cardData.email)}>Send email</button>
+                                    <button className='bg-blue-500 text-white font-bold rounded-sm w-[100px] hover:py-1 hover:bg-green-500 duration-500' onClick={() => showEmailModal(cardData.email)}>Send email</button>
                                 </div>
                             </div>
                             <div className='flex flex-col mt-1'>

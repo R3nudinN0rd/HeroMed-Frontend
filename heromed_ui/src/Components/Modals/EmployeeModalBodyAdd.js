@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import useAxios from '../../hooks/useAxios';
 import SectionDropBox from '../Cards/MicelaneousComponents/SectionsDropBox';
 import JobDropBox from '../Cards/MicelaneousComponents/JobsDropBox'
-import {url} from '../../common/Constants';
+import { url } from '../../common/Constants';
 
 
 const EmployeeBody = (props) => {
     const [inputValues, setInputValues] = useState({});
-    
+    const emailRef = useRef(null);
+    const emailInputRef = useRef(null);
+    const [addedMessage, setAddedMessage] = useState(false);
+
     const handleChange = (event) => {
         setInputValues({
             ...inputValues,
@@ -22,15 +25,27 @@ const EmployeeBody = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post(url+'/api/employees/', inputValues, {
+        axios.post(url + '/api/employees/', inputValues, {
             headers: {
                 'ContentType': 'application/json'
             }
         })
             .then(response => {
                 console.log(response);
-                window.location.reload(false);
-                handleClose();
+                if (response.status == 204) {
+                    if (addedMessage == false) {
+                        const existenceMsg = document.createElement("span");
+                        existenceMsg.innerText = "Email already exists!";
+                        existenceMsg.className = "text-xs text-center text-red-500"
+                        emailRef.current.appendChild(existenceMsg);
+                        setAddedMessage(true);
+                        emailInputRef.current.className = "border-2 text-center rounded-full py-2 text-grey-darkest border-red-500"
+                    }
+                }
+                else {
+                    window.location.reload(false);
+                    handleClose();
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -97,13 +112,13 @@ const EmployeeBody = (props) => {
                             <span className="text-lg text-bold font-medium text-center"> Contact </span>
                         </div>
                         <div className='flex flex-row w-full mb-4 md:justify-between'>
-                            <div className='flex flex-col w-full mb-4 md:justify-between'>
+                            <div ref={emailRef} className='flex flex-col w-full mb-4 md:justify-between'>
                                 <label className='mb-2 uppercase tracking-wide font-bold text-lg text-grey-darkest' htmlFor='email'>Email</label>
-                                <input className='border text-center rounded-full py-2 text-grey-darkest' name='email' id='email' type='email' onChange={handleChange} required />
+                                <input ref={emailInputRef} className='border text-center rounded-full py-2 text-grey-darkest' name='email' id='email' type='email' onChange={handleChange} required />
                             </div>
-                            <div className='flex flex-col w-full mb-4 md:justify-between'>
+                            <div className='flex flex-col w-full mb-4 justify-center'>
                                 <label className='mb-2 uppercase tracking-wide font-bold text-lg text-grey-darkest' htmlFor='phone'>Phone number</label>
-                                <input className='border text-center rounded-full py-2 text-grey-darkest' name='phoneNumber' id='email' type='tel' onChange={handleChange} required />
+                                <input className='border text-center rounded-full py-2 text-grey-darkest' name='phoneNumber' id='phone' type='tel' onChange={handleChange} required />
                             </div>
                         </div>
                     </div>

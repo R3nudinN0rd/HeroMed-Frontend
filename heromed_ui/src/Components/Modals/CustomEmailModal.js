@@ -4,7 +4,7 @@ import { url } from '../../common/Constants'
 
 function CustomEmailModal({patientData, setIsModalOpen}){
 
-    const [recipient, setRecipient] = useState();
+    const [recipients, setRecipient] = useState([patientData]);
     const [subject, setSubject] = useState("");
     const [body, setBody] = useState("");
     const isHtml = true
@@ -14,7 +14,7 @@ function CustomEmailModal({patientData, setIsModalOpen}){
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        axios.post(url+'/api/smtp/sendemail',{recipient, subject, body, isHtml},{
+        axios.post(url+'/api/smtp/sendemail',{recipients, subject, body, isHtml},{
             headers:{
                 'ContentType': 'application/json'
             }
@@ -30,20 +30,20 @@ function CustomEmailModal({patientData, setIsModalOpen}){
     }
 
     return(
-        <div className='flex w-1/2 h-3/4 items-center bg-teal-lighter'>
-            <div className='w-2/5 max-h-[600px] bg-white rounded shadow-lg p-8 m-4 overflow-y-scroll'>
+        <div className='flex w-full h-full items-center justify-center bg-teal-lighter'>
+            <div className='w-2/5 h-1/2 bg-white rounded shadow-lg p-8 m-4'>
                 <form className='mb-4 col-1' action='/' method='post' onSubmit={handleSubmit}>
-                    <div className='leading-5 min-h-[50px] w-[240px] text-ellipsis max-h-[150px] text-description-text font-medium flex flex-row pt-1'>
-                        <span className="text-lg text-bold font-medium text-center"> Email compose </span>
+                    <div className='leading-5 min-h-[50px] w-full text-ellipsis max-h-[150px] text-description-text font-medium flex flex-row pt-1 justify-center'>
+                        <span className="text-2xl text-bold font-medium text-center"> Email compose </span>
                     </div>
-                    <div className='flex flex-col w-full mb-4'>
-                        <div className='flrx flex-col w-full'>
-                            <span className='text-lg text-bold text-center font-medium opacity-50'>Email subject</span>
-                            <input className='border text-center rounded-full py-2 px-3 text-grey-darkest' name='subject' id='subject' type='text' onChange={(e) => setSubject(e.target.value)} required/>
+                    <div className='flex flex-col w-full mb-4 justify-center'>
+                        <div className='flex flex-row w-full justify-around'>
+                            <span className=' flex text-lg text-bold text-center font-medium opacity-50'>Email subject</span>
+                            <input className='flex border text-center rounded-full py-2 px-3 text-grey-darkest' name='subject' id='subject' type='text' onChange={(e) => setSubject(e.target.value)} required/>
                         </div>
                         <div className='flex flex-col w-full'>
                             <span className='text-lg text-bold text-center font-medium opacity-50'>Email message</span>
-                            <textarea className='border text-center rounded-2xl py-2 px-3 text-grey-darkest' onChange={(e) => setBody(e.target.value)}></textarea>
+                            <textarea className='border  rounded-2xl py-2 px-3 text-grey-darkest h-[120px] overflow-y-auto' onChange={(e) => setBody(e.target.value)}></textarea>
                         </div>
                     </div>
                     <div className='w-full flex flex-row mt-6 justify-between'>

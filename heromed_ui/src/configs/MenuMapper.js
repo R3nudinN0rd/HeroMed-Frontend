@@ -45,7 +45,7 @@ function MenuMapper() {
       'element':<AssignementsPage/>
     },
     {
-      'name':'Admin panel',
+      'name':'Admin',
       'url': '/admin',
       'icon':<MdOutlineAdminPanelSettings size={24}/>,
       'element':<AdminPage/>
