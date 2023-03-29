@@ -16,7 +16,7 @@ const PatientBody = (props) => {
     }
 
     const handleClose = () => {
-        props.setIsMOdalOpen(false);
+        props.setIsModalOpen(false);
     }
 
     const handleSubmit = (event) => {
@@ -118,6 +118,7 @@ const PatientBody = (props) => {
                         <button className='bg-blue-500 hover:bg-red-700 font-bold py-2 rounded focus:outline-none focus:shadow-outline hover:px-6 px-5 text-white duration-500' onClick={handleClose}>
                             Close
                         </button>
+                    
                     </div>
                     </div>
                 </form>
