@@ -9,6 +9,23 @@ function PatientCardComponent({ cardData }) {
     const [isModalOpenText, setIsModalOpenText] = useState(false);
     const [modalBodyText, setModalBodyText] = useState();
 
+    const getPdf = () =>{
+    axios.get('http://localhost/ReportServer/Pages/ReportViewer.aspx?/HeroMed/Reports/EnrollReport&rs:Format=PDF', {
+    responseType: 'arraybuffer',
+    headers: {
+        'Content-Type': 'application/pdf'
+    }
+})
+.then(response => {
+    const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    window.open(pdfUrl, '_blank');
+})
+.catch(error => {
+    console.error(error);
+});
+}
+
     const DateConverter = (datetime) => {
         const date = new Date(datetime)
         return (`${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`)
@@ -88,7 +105,7 @@ function PatientCardComponent({ cardData }) {
                         <div className='bg-blue-500 w-full h-2/5 hover:bg-green-600 rounded-xl py-2 hover:px-4 px-5 text-white duration-500 cursor-pointer justify-center'>
                             <span className='text-white text-sm'><b>Send email</b></span>
                         </div>
-                        <div className='bg-blue-500 w-full h-2/5 hover:bg-green-600 rounded-xl py-2 hover:px-4 px-5 text-white duration-500 cursor-pointer justify-center'>
+                        <div className='bg-blue-500 w-full h-2/5 hover:bg-green-600 rounded-xl py-2 hover:px-4 px-5 text-white duration-500 cursor-pointer justify-center' onClick={getPdf}>
                             <span className='text-white text-sm'><b>Download</b></span>
                         </div>
                     </div>
