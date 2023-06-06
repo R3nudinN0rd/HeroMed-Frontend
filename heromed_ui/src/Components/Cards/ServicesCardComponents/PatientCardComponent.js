@@ -6,20 +6,26 @@ import ModalContainer from '../../Modals/ModalContainer';
 import { url } from '../../../common/Constants';
 
 
-function PatientCardComponent({ cardData }) {
+function PatientCardComponent({ cardData, reportType }) {
 
     const [isModalOpenText, setIsModalOpenText] = useState(false);
     const [modalBodyText, setModalBodyText] = useState();
-    const {enrollReportTitle} = useState("EnrollReport")
     const GetReportAsPDF = (patientId) => {
-        console.log(cardData)
-        axios.get(url+`/api/Reporting?reportName=${enrollReportTitle}&patientId=${patientId}`,{
+        axios.get(url+`/api/Reporting?reportName=${reportType}&patientId=${patientId}`,{
             headers:{
                 'ContentType':'application/pdf'
-            } 
+            },
+            method:'GET',
+            responseType:'blob' 
         })
         .then(response => {
             console.log(response);
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${reportType}Report - ${patientId}.pdf`);
+            document.body.appendChild(link);
+            link.click();
         })
         .catch(error => {
             console.log(error);
@@ -102,9 +108,6 @@ function PatientCardComponent({ cardData }) {
                     </div>
                     <span className='border-r-[1px] border-gray-300 h-full'></span>
                     <div className='flex flex-col h-full w-40 justify-center items-center px-4 gap-2'>
-                        <div className='bg-blue-500 w-full h-2/5 hover:bg-green-600 rounded-xl py-2 hover:px-4 px-5 text-white duration-500 cursor-pointer justify-center'>
-                            <span className='text-white text-sm'><b>Send email</b></span>
-                        </div>
                         <div className='bg-blue-500 w-full h-2/5 hover:bg-green-600 rounded-xl py-2 hover:px-4 px-5 text-white duration-500 cursor-pointer justify-center' onClick={() => GetReportAsPDF(cardData.id)}>
                             <span className='text-white text-sm'><b>Download</b></span>
                         </div>

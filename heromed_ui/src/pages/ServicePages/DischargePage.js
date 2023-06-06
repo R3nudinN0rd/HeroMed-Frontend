@@ -21,7 +21,7 @@ function DischargePage() {
                         <>
                             <div className='flex flex-col justify-start w-full h-full px-8 py-12 overflow-auto overflow-x-hidden rounded-3x1 gap-4'>
                                 {error && (<EmptyArray/>)}
-                                {data && data.map((patient) => <PatientCardComponent key={patient.id} cardData={patient} />)}
+                                {data && data.map((patient) => <PatientCardComponent key={patient.id} cardData={patient} reportType='Discharge' />)}
                             </div>
                         </>
                     )
