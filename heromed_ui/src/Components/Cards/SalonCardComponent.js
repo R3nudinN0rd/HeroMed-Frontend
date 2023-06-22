@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import useAxios from '../../hooks/useAxios'
 import axios from 'axios';
 import SalonBodyUpdate from '../Modals/SalonModalBodyUpdate';
-import HeromedSectionImagePlaceholder from '../../assets/Images/HeromedSectionImagePlaceholder.jpg'
+import HeromedSalonImagePlaceholder from '../../assets/Images/HeromedSalonImagePlaceholder.png'
 import Button from '@mui/material/Button';
 import ModalContainer from '../../Components/Modals/ModalContainer';
 import LoadingHandler from '../../common/LoadingHandler'
@@ -64,7 +64,7 @@ function SalonCardComponent({ cardData }) {
           </div>
         </div>
             <div className='relative h-[150px] w-full  group'>
-              <img src={HeromedSectionImagePlaceholder} className='absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px] overflow-hidden duration-700 group-hover:scale-125 group-hover:z-30  group-hover:h-48' />
+              <img src={HeromedSalonImagePlaceholder} className='absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px] overflow-hidden duration-700 group-hover:scale-125 group-hover:z-30  group-hover:h-48' />
               <div className='z-10 flex flex-col justify-between h-full'>
                 <div className='z-10 flex flex-col items-end pt-2 pr-2'>
                 </div>
