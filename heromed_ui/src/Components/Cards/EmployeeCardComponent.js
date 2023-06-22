@@ -8,7 +8,7 @@ import { AiFillEdit } from 'react-icons/ai';
 import Button from '@mui/material/Button';
 import SectionTitle from "./MicelaneousComponents/SectionTitleForCard";
 import JobTitle from "./MicelaneousComponents/JobTitleForCard";
-import HeromedSectionImagePlaceholder from '../../assets/Images/HeromedSectionImagePlaceholder.jpg'
+import HeromedEmployeeImagePlaceholder from '../../assets/Images/HeromedEmployeeImagePlaceholder.jpg'
 import EmployeeBodyUpdate from '../Modals/EmployeeModalBodyUpdate';
 import SalonBodyUpdate from '../Modals/SalonModalBodyUpdate';
 import {url} from '../../common/Constants'
@@ -82,7 +82,7 @@ function EmployeeCardComponent({ cardData }) {
                     </div>
                 </div>
                 <div className="relative h-[150px] w-full group">
-                    <img src={HeromedSectionImagePlaceholder} className="absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px] overflow-hidden duration-700 group-hover:scale-125 group-hover:z-30  group-hover:h-48" />
+                    <img src={HeromedEmployeeImagePlaceholder} className="absolute top-0 right-0 w-full h-full rounded-tl-[10px] rounded-tr-[10px] overflow-hidden duration-700 group-hover:scale-125 group-hover:z-30  group-hover:h-48" />
                     <div className="z-10 flex flex-col justify-between h-full group-hover:opacity-0 duration-700">
                         <div className="z-10 flex flex-col items-end pt-2 pr-2"></div>
                         <span className="absolute bottom-0 z-10 w-full h-16 dark-to-transparent-card"></span>
