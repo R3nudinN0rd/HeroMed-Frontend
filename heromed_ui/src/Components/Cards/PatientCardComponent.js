@@ -12,7 +12,7 @@ import SalonNumber from "./MicelaneousComponents/SalonNumberForCard";
 import LargeTextModal from '../Modals/LargeTextModal';
 import {url} from '../../common/Constants';
 
-function PatientCardComponent({ cardData, showEmailModal}) {
+function PatientCardComponent({ cardData}) {
     const [isModalOpenText, setIsModalOpenText] = useState(false);
     const [isModalOpenUpdate, setIsModalOpenUpdate] = useState(false)
     const [modalBodyText, setModalBodyText] = useState();
@@ -122,7 +122,6 @@ function PatientCardComponent({ cardData, showEmailModal}) {
                                 <span className='text-sm text-bold text-center font-medium opacity-50 align-center'>Email</span>
                                 <div className='flex flex-row justify-center w-full'>  
                                     <span className='text-center px-2'>{cardData.email}</span>
-                                    <button className='bg-blue-500 text-white font-bold rounded-sm w-[100px] hover:py-1 hover:bg-green-500 duration-500' onClick={() => showEmailModal(cardData.email)}>Send email</button>
                                 </div>
                             </div>
                             <div className='flex flex-col mt-1'>
